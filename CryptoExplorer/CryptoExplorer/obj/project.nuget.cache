@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "TR5DqiJQksnQrJRf8Z+0j1Wc543mGZqF1t0FjMTCXuz36kKIVfs/ybEo7OBp5V2Q2rOLcZY9Z9XWnzlOu6sNEw==",
+  "dgSpecHash": "i0V5XWkIpCoiTOlCvQbA/FE7P74GswjdTnx06JNIWxveSO7HggaGmwGKApd7HybmEVQZIl6mllQPJMcASSBm3g==",
   "success": true,
   "projectFilePath": "E:\\Library\\Test Assignment\\DCT_WPF\\Projects\\CryptoExplorer\\CryptoExplorer\\CryptoExplorer\\CryptoExplorer.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\chuch\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.31\\microsoft.xaml.behaviors.wpf.1.1.31.nupkg.sha512",
+    "C:\\Users\\chuch\\.nuget\\packages\\prism.core\\8.1.97\\prism.core.8.1.97.nupkg.sha512",
+    "C:\\Users\\chuch\\.nuget\\packages\\prism.wpf\\8.1.97\\prism.wpf.8.1.97.nupkg.sha512"
+  ],
   "logs": []
 }

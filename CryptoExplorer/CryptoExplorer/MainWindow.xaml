@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <TextBlock FontSize="30"
+                   Background="Bisque"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontFamily="Bold"
+                   FontStyle="Italic"
+                   FontStretch="Medium">PRESSED ME</TextBlock>
     </Grid>
 </Window>
