@@ -1,20 +1,16 @@
-﻿using Prism.DryIoc;
+﻿using CryptoExplorer.ViewModels;
+using CryptoExplorer.Views;
 using Prism.Ioc;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+//using Prism.Ioc;
+using Prism.Unity;
 using System.Windows;
 
 namespace CryptoExplorer
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : PrismApplication
     {
+        #region  ---   Overrides   ---
+
         protected override Window CreateShell()
         {
             return Container.Resolve<MainWindow>();
@@ -25,6 +21,11 @@ namespace CryptoExplorer
             //Registering services
 
             //Registering pages
+            //containerRegistry.RegisterForNavigation<CurrencyDetailsPage, CurrencyDetailsPageViewModel>();
+            //containerRegistry.RegisterForNavigation<CurrencyOverviewPage, CurrencyOverviewPageViewModel>();
+            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
         }
+
+        #endregion
     }
 }
