@@ -1,9 +1,11 @@
-﻿using CryptoExplorer.ViewModels;
+﻿using CryptoExplorer.Services.Cryptocurrency;
+using CryptoExplorer.ViewModels;
 using CryptoExplorer.Views;
 using Prism.Ioc;
 //using Prism.Ioc;
 using Prism.Unity;
 using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CryptoExplorer
 {
@@ -19,7 +21,7 @@ namespace CryptoExplorer
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             //Registering services
-
+            containerRegistry.Register<ICryptocurrencyService, CryptocurrencyService>();
             //Registering pages
             //containerRegistry.RegisterForNavigation<CurrencyDetailsPage, CurrencyDetailsPageViewModel>();
             //containerRegistry.RegisterForNavigation<CurrencyOverviewPage, CurrencyOverviewPageViewModel>();

@@ -53,7 +53,7 @@ namespace CryptoExplorer.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CryptoExplorer;V1.0.0.0;component/views/currencydetailspage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CryptoExplorer;component/views/currencydetailspage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\CurrencyDetailsPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
