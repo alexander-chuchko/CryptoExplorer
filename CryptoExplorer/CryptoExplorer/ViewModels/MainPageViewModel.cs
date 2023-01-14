@@ -4,6 +4,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,14 @@ namespace CryptoExplorer.ViewModels
             set { SetProperty(ref _currencyList, value); }
         }
 
-        private ICommand? _GetGetCurrenciesCommand;
+        private Currency? _currency;
+        public Currency? Currency
+        {
+            get { return _currency; }
+            set { SetProperty(ref _currency, value); }
+        }
+
+        private ICommand _GetGetCurrenciesCommand;
         public ICommand GetGetCurrenciesCommand => _GetGetCurrenciesCommand ?? new DelegateCommand(OnGetCurrencies);
 
 
@@ -46,6 +54,19 @@ namespace CryptoExplorer.ViewModels
             if (_cryptocurrencyService is not null)
             {
                 СurrencyList = await _cryptocurrencyService.GetTopCurrenciesAsync();//.GetAwaiter().GetResult();
+            }
+        }
+
+        #endregion
+
+        #region     --- Override ---
+        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
+        {
+            base.OnPropertyChanged(args);
+
+            if (args.PropertyName == nameof(Currency))
+            {
+                //ShowRelevantPins();
             }
         }
 

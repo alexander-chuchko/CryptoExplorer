@@ -6,7 +6,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListView Name="currenciesList" ItemsSource="{Binding СurrencyList}" SelectedItem="{Binding }">
+        
+        <ListView Name="currenciesList"
+                  ItemsSource="{Binding СurrencyList}"
+                  SelectedItem="{Binding Currency}">
+            
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Currency</GridViewColumn>
