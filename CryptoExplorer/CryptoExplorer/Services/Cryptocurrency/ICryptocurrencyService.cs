@@ -9,6 +9,6 @@ namespace CryptoExplorer.Services.Cryptocurrency
 {
     public interface ICryptocurrencyService
     {
-        Task<IEnumerable<Currency>> GetTopCurrenciesAsync(int limit = 0);
+        Task<IEnumerable<Currency>> GetTopCurrenciesAsync();
     }
 }

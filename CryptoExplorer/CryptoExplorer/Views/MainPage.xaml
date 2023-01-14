@@ -6,7 +6,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="View A" FontSize="38"/>
-        <Button Command="{Binding GetGetCurrenciesCommand}" Width="100" Height="50" Background="Blue"/>
+        <ListView Name="currenciesList" ItemsSource="{Binding СurrencyList}" SelectedItem="{Binding }">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Currency</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Symbol}">Symbol</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=PriceUsd}">Price</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=VolumeUsd24Hr}">VolumeUsd24Hr</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Vwap24Hr}">Vwap24Hr</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=MaxSupply}" Width="100">MaxSupply</GridViewColumn>
+                </GridView>
+            </ListView.View>
+            
+        </ListView>
+        <!--<TextBlock Text="View A" FontSize="38"/> 
+        <Button Command="{Binding GetGetCurrenciesCommand}" Width="100" Height="50" Background="Blue"/>-->
+
     </Grid>
 </UserControl>

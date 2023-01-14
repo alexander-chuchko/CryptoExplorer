@@ -1,4 +1,5 @@
-﻿using CryptoExplorer.Services.Cryptocurrency;
+﻿using CryptoExplorer.Models;
+using CryptoExplorer.Services.Cryptocurrency;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
@@ -12,21 +13,43 @@ namespace CryptoExplorer.ViewModels
 {
     public class MainPageViewModel : BindableBase
     {
-        private readonly ICryptocurrencyService _cryptocurrencyService;
-        public MainPageViewModel(ICryptocurrencyService cryptocurrencyService)
+        #region   ---    PrivateFields   ---
+
+        private readonly ICryptocurrencyService? _cryptocurrencyService;
+
+        #endregion
+        public MainPageViewModel(ICryptocurrencyService? cryptocurrencyService)
         {
-            _cryptocurrencyService = cryptocurrencyService; 
+            _cryptocurrencyService = cryptocurrencyService;
+            OnGetCurrencies();
         }
 
-        private ICommand _GetGetCurrenciesCommand;
+        #region   ---   PublicProperties   ---
+
+        private IEnumerable<Currency>? _currencyList;
+        public IEnumerable<Currency>? СurrencyList
+        {
+            get { return _currencyList; }
+            set { SetProperty(ref _currencyList, value); }
+        }
+
+        private ICommand? _GetGetCurrenciesCommand;
         public ICommand GetGetCurrenciesCommand => _GetGetCurrenciesCommand ?? new DelegateCommand(OnGetCurrencies);
 
-        private void OnGetCurrencies()
+
+        #endregion
+
+        #region --- Private helpers ---
+
+        private async void OnGetCurrencies()
         {
-            var res =  _cryptocurrencyService.GetTopCurrenciesAsync();
+            if (_cryptocurrencyService is not null)
+            {
+                СurrencyList = await _cryptocurrencyService.GetTopCurrenciesAsync();//.GetAwaiter().GetResult();
+            }
         }
 
-        //private ICommand _NavigationToGoBackCommand;
-        //public ICommand NavigationToGoBackCommand => _NavigationToGoBackCommand ?? (_NavigationToGoBackCommand = new DelegateCommand<string>(OnNavigationToGoBack));
+        #endregion
+
     }
 }
