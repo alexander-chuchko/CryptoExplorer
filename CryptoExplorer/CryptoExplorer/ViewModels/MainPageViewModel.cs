@@ -1,11 +1,14 @@
 ﻿using CryptoExplorer.Models;
 using CryptoExplorer.Services.Cryptocurrency;
+using CryptoExplorer.Views;
 using Prism.Commands;
 using Prism.Mvvm;
+using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -17,13 +20,17 @@ namespace CryptoExplorer.ViewModels
         #region   ---    PrivateFields   ---
 
         private readonly ICryptocurrencyService? _cryptocurrencyService;
+        private readonly IRegionManager _regionManager;
 
         #endregion
-        public MainPageViewModel(ICryptocurrencyService? cryptocurrencyService)
+
+        public MainPageViewModel(ICryptocurrencyService? cryptocurrencyService, IRegionManager regionManager)
         {
             _cryptocurrencyService = cryptocurrencyService;
+            _regionManager = regionManager;
             OnGetCurrencies();
         }
+
 
         #region   ---   PublicProperties   ---
 
@@ -49,6 +56,7 @@ namespace CryptoExplorer.ViewModels
 
         #region --- Private helpers ---
 
+
         private async void OnGetCurrencies()
         {
             if (_cryptocurrencyService is not null)
@@ -66,7 +74,9 @@ namespace CryptoExplorer.ViewModels
 
             if (args.PropertyName == nameof(Currency))
             {
-                //ShowRelevantPins();
+                var navigationParameters = new NavigationParameters();
+                navigationParameters.Add(nameof(Currency), Currency);
+                _regionManager.RequestNavigate(Constants.CONTENT_REGION, nameof(CurrencyDetailsPage), navigationParameters);
             }
         }
 

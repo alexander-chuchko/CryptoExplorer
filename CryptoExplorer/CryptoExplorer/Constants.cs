@@ -10,5 +10,6 @@ namespace CryptoExplorer
         public const string BASE_URL = "https://api.coincap.io/v2/";
 
         public const string LIMIT_CURRENCIES = "10";
+        public const string CONTENT_REGION = "ContentRegion";
     }
 }

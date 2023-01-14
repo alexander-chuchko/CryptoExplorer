@@ -23,9 +23,9 @@ namespace CryptoExplorer
             //Registering services
             containerRegistry.Register<ICryptocurrencyService, CryptocurrencyService>();
             //Registering pages
-            //containerRegistry.RegisterForNavigation<CurrencyDetailsPage, CurrencyDetailsPageViewModel>();
             //containerRegistry.RegisterForNavigation<CurrencyOverviewPage, CurrencyOverviewPageViewModel>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<CurrencyDetailsPage, CurrencyDetailsPageViewModel>();
         }
 
         #endregion

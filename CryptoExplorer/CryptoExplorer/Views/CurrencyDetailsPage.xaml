@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:CryptoExplorer.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="Bisque">
+        <TextBlock Background="Blue">CurrencyDetailsPage</TextBlock>
+        <Button Width="150" Height="100" Background="Red" Command="{Binding GoBackCommand}">GoBack</Button>
     </Grid>
 </UserControl>
