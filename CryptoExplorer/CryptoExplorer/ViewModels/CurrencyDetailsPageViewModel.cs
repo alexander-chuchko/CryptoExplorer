@@ -1,21 +1,21 @@
-﻿
-using CryptoExplorer.Models;
+﻿using CryptoExplorer.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Windows.Input;
-using System.Windows.Navigation;
-using System.Xml.Linq;
 
 namespace CryptoExplorer.ViewModels
 {
     public class CurrencyDetailsPageViewModel : BindableBase, INavigationAware
     {
+        #region   ---    PrivateFields   ---
+
         private IRegionNavigationService _navigationService;
 
-        public CurrencyDetailsPageViewModel()
-        {
+        #endregion
 
+        public CurrencyDetailsPageViewModel(IRegionNavigationService navigationService)
+        {
         }
 
 
@@ -53,8 +53,7 @@ namespace CryptoExplorer.ViewModels
         }
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-            
+        {   
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)

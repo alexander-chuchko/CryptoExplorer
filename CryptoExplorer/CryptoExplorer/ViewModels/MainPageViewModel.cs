@@ -4,18 +4,13 @@ using CryptoExplorer.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace CryptoExplorer.ViewModels
 {
-    public class MainPageViewModel : BindableBase
+    public class MainPageViewModel : BindableBase, IRegionMemberLifetime
     {
         #region   ---    PrivateFields   ---
 
@@ -50,6 +45,8 @@ namespace CryptoExplorer.ViewModels
 
         private ICommand _GetGetCurrenciesCommand;
         public ICommand GetGetCurrenciesCommand => _GetGetCurrenciesCommand ?? new DelegateCommand(OnGetCurrencies);
+
+        public bool KeepAlive => false;
 
 
         #endregion
