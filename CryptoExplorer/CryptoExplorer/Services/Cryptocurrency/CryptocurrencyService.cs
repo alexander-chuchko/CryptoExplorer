@@ -12,9 +12,8 @@ namespace CryptoExplorer.Services.Cryptocurrency
 {
     public class CryptocurrencyService : ICryptocurrencyService
     {
-        public const string WEB_API = $"assets?poloniex=Binance&limit=";
-        //public const string BASE_URL = "https://api.coincap.io/v2/";
-        string _apiKey = $"";
+        public const string WEB_API_CURRENCIES = $"?poloniex=Binance&limit="; //Currencies
+        public const string WEB_API_MARKETS = $"/markets?limit="; //api.coincap.io/v2/assets/bitcoin10
 
         private HttpClient _client;
         public CryptocurrencyService()
@@ -31,7 +30,7 @@ namespace CryptoExplorer.Services.Cryptocurrency
 
             try
             {
-                HttpResponseMessage response = await _client.GetAsync($"{WEB_API}{Constants.LIMIT_CURRENCIES}");
+                HttpResponseMessage response = await _client.GetAsync($"{WEB_API_CURRENCIES}{Constants.LIMIT_CURRENCIES}");
 
                 if (response.EnsureSuccessStatusCode().IsSuccessStatusCode && response.StatusCode == HttpStatusCode.OK)
                 {
@@ -47,6 +46,30 @@ namespace CryptoExplorer.Services.Cryptocurrency
             }
 
             return сurrencies;
+        }
+
+        public async Task<IEnumerable<Market>> GetMarketsAsync(string id)
+        {
+            IEnumerable<Market>? markets = null;
+
+            try
+            {
+                HttpResponseMessage response = await _client.GetAsync($"{id}{WEB_API_CURRENCIES}{Constants.LIMIT_MARKETS}");
+
+                if (response.EnsureSuccessStatusCode().IsSuccessStatusCode && response.StatusCode == HttpStatusCode.OK)
+                {
+                    var responceMarket = await response.Content.ReadAsStringAsync();
+                    var deserializedResponceCurrency = JsonConvert.DeserializeObject<ResponceMarket>(responceMarket);
+
+                    markets = deserializedResponceCurrency?.Currencies?.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            return markets;
         }
     }
 }
