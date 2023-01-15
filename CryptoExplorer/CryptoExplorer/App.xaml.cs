@@ -1,4 +1,5 @@
 ﻿using CryptoExplorer.Services.Cryptocurrency;
+using CryptoExplorer.Services.SettingsManager;
 using CryptoExplorer.ViewModels;
 using CryptoExplorer.Views;
 using Prism.Ioc;
@@ -22,6 +23,8 @@ namespace CryptoExplorer
         {
             //Registering services
             containerRegistry.Register<ICryptocurrencyService, CryptocurrencyService>();
+            containerRegistry.Register<ISettingsManager, SettingsManager>();
+
             //Registering pages
             //containerRegistry.RegisterForNavigation<CurrencyOverviewPage, CurrencyOverviewPageViewModel>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
