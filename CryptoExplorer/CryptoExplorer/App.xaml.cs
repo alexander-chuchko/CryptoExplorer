@@ -3,7 +3,6 @@ using CryptoExplorer.Services.SettingsManager;
 using CryptoExplorer.ViewModels;
 using CryptoExplorer.Views;
 using Prism.Ioc;
-//using Prism.Ioc;
 using Prism.Unity;
 using System.Windows;
 using static System.Net.Mime.MediaTypeNames;

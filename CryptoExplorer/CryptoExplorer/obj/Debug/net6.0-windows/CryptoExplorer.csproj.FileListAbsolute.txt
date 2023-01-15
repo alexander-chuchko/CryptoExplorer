@@ -32,3 +32,4 @@ E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\Crypto
 E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\obj\Debug\net6.0-windows\CryptoExplorer.genruntimeconfig.cache
 E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\obj\Debug\net6.0-windows\ref\CryptoExplorer.dll
 E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\bin\Debug\net6.0-windows\CryptoExplorer.dll.config
+E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs

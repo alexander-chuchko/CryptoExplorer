@@ -1,4 +1,5 @@
 ﻿using CryptoExplorer.Models;
+using CryptoExplorer.Services.SettingsManager;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -11,11 +12,13 @@ namespace CryptoExplorer.ViewModels
         #region   ---    PrivateFields   ---
 
         private IRegionNavigationService _navigationService;
+        private readonly ISettingsManager _settingsManager;
 
         #endregion
 
-        public CurrencyDetailsPageViewModel(IRegionNavigationService navigationService)
+        public CurrencyDetailsPageViewModel(ISettingsManager settingsManager)
         {
+            _settingsManager = settingsManager;
         }
 
 
@@ -41,6 +44,18 @@ namespace CryptoExplorer.ViewModels
             {
                 _navigationService.Journal.GoBack();
             }
+        }
+
+        private void OnChangeTheme()
+        {
+            /*
+                             if (_settingsManager.IsDarkTheme)
+                {
+                    _settingsManager.IsDarkTheme = false;
+                }
+                OnChangeTheme();
+             */
+            _settingsManager.IsDarkTheme = true;
         }
 
         #endregion

@@ -5,8 +5,12 @@ namespace CryptoExplorer.Services.SettingsManager
     {
         public bool IsDarkTheme
         {
-            get => Properties.Settings.Default.isDarkTheme;
-            set => Properties.Settings.Default.isDarkTheme = value;
+            get { return Properties.Settings.Default.isDarkTheme; }
+            set 
+            {
+                Properties.Settings.Default.isDarkTheme = value;
+                Properties.Settings.Default.Save();
+            }
         }
     }
 }
