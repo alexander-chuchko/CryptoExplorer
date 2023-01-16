@@ -46,10 +46,17 @@ namespace CryptoExplorer
 
         private void OnNavigateToCurrencyDetailsPage(object parametr)
         {
-            switch ()
-            { 
+            var namePage = parametr as string;
+            
+            if (!string.IsNullOrWhiteSpace(namePage))
+            {
+                switch (namePage)
+                {
+                    case nameof(CurrencyDetailsPage):
+                        _regionManager.RequestNavigate("ContentRegion", (nameof(CurrencyDetailsPage)));
+                        break;
+                }
             }
-            _regionManager.RequestNavigate("ContentRegion", (nameof(CurrencyDetailsPage)));
         }
 
         #endregion

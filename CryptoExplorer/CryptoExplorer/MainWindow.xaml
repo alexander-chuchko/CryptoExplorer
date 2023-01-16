@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:constants="clr-namespace:CryptoExplorer"
         mc:Ignorable="d"
         Title="CryptoExplorer" MinHeight="450" MinWidth="800">
     <i:Interaction.Triggers>
@@ -45,7 +46,7 @@
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
                         <prism:InvokeCommandAction Command="{Binding NavigateCurrencyDetailsPageCommand}"
-                                                   CommandParameter="CurrencyDetails"/>
+                                                   CommandParameter="{x:Static constants:Constants.CURRENCY_DETAILS_PAGE}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 </TextBlock>

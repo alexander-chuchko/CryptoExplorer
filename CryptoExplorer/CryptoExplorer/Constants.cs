@@ -15,8 +15,8 @@ namespace CryptoExplorer
         public const string LIMIT_MARKETS = "10";
         public const string CONTENT_REGION = "ContentRegion";
 
-        public const string CURRENCY_DETAILS_PAGE = nameof(CurrencyDetailsPage);
-        public const string MAINE_PAGE = nameof(MainPage);
+        public const string CURRENCY_DETAILS_PAGE = "CurrencyDetailsPage";
+        public const string MAIN_PAGE = "MainPage";
 
     }
 }
