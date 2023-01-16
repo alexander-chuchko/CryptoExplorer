@@ -22,10 +22,18 @@ namespace CryptoExplorer
             OnLoadedCommand = new DelegateCommand(OnLoaded);
         }
 
+        #region   ---   PublicProperties   ---
+
         public ICommand OnLoadedCommand { get; }
+
+        private ICommand _NavigateCurrencyDetailsPageCommand;
+        public ICommand NavigateCurrencyDetailsPageCommand => _NavigateCurrencyDetailsPageCommand ?? (_NavigateCurrencyDetailsPageCommand = new DelegateCommand<object>(OnNavigateToCurrencyDetailsPage));
 
         public bool KeepAlive =>false;
 
+        #endregion
+
+        #region --- Private helpers ---
         public void OnLoaded()
         {
             //IRegion mainRegion = _regionManager.Regions["ContentRegion"];
@@ -33,7 +41,14 @@ namespace CryptoExplorer
             //mainRegion.Add(view);
 
             _regionManager.RequestNavigate("ContentRegion", (nameof(MainPage)));
-            //_regionManager.RequestNavigate(RegionNames.AuthContentRegion, NavigationPaths.RailwayListPath);
+
         }
+
+        private void OnNavigateToCurrencyDetailsPage(object parametr)
+        {
+            _regionManager.RequestNavigate("ContentRegion", (nameof(CurrencyDetailsPage)));
+        }
+
+        #endregion
     }
 }

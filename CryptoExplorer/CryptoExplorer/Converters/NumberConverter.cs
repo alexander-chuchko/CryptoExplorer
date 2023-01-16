@@ -5,6 +5,7 @@ using System.Windows.Data;
 
 namespace CryptoExplorer.Converters
 {
+    //CryptoExplorer.Converters.NumberConverter
     public class NumberConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -13,7 +14,7 @@ namespace CryptoExplorer.Converters
 
             if (!string.IsNullOrEmpty(valueString))
             {
-                valueString = valueString.Substring(valueString.LastIndexOf('.') + 2);
+                valueString = valueString.Substring(0, valueString.LastIndexOf('.') + 3);
             }
             else
             {

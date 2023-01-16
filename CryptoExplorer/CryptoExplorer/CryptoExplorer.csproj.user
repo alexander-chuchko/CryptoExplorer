@@ -18,6 +18,12 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Styles\DarkTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\LightTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\CurrencyDetailsPage.xaml">
       <SubType>Designer</SubType>
     </Page>

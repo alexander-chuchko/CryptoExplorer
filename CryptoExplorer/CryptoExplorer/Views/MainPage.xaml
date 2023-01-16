@@ -5,30 +5,113 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              xmlns:local="clr-namespace:CryptoExplorer.Converters" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <local:NumberConverter x:Key="numberConverter"/>
-    </UserControl.Resources>
-    <Grid>
-        
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="#E5E5E5">
+    <Grid MinHeight="500" MinWidth="500">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical"
+                    Background="#E5E5E5" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+            <TextBlock Text="Top 10 Binance Market Currencies" 
+                       FontSize="25"
+                       FontWeight="Bold"
+                       Foreground="#1E242B"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+
         <ListView Name="currenciesList"
+                  Height="auto"
+                  Width="auto"
+                  VerticalContentAlignment="Stretch"
+                  Background="#E5E5E5"
                   ItemsSource="{Binding СurrencyList}"
-                  SelectedItem="{Binding Currency}">
+                  SelectedItem="{Binding Currency}"
+                  Grid.Row="1">
             
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Currency</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Symbol}">Symbol</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=PriceUsd, Converter={StaticResource numberConverter}}">Price</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=VolumeUsd24Hr}">VolumeUsd24Hr</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Vwap24Hr}">Vwap24Hr</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=MaxSupply}" Width="100">MaxSupply</GridViewColumn>
-                </GridView>
-            </ListView.View>
-            
+            <ListView.Resources>
+                <local:NumberConverter x:Key="numberConverter"/>
+                <Style TargetType="GridViewColumnHeader">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </Style>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background" Value="AliceBlue" />
+                    <Setter Property="BorderBrush" Value="#F1F3FD" />
+                    <Setter Property="BorderThickness" Value="4" />
+                    <!--<Setter Property="Height" Value="60" />
+                     <Setter Property="FontSize" Value="18"/>  -->
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="Red" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="{Binding ElementName=currenciesList, Path=Width}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0"
+                                    HorizontalAlignment="Stretch">
+                            <Label Content="{Binding Name}" 
+                                   Foreground="Red"
+                                   HorizontalContentAlignment="Left"
+                                   FontSize="16"/>
+                            
+                            <Label Content="{Binding Symbol}"
+                                   Foreground="Green"
+                                   HorizontalContentAlignment="Left"
+                                   
+                                   FontSize="12"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2"
+                                    Width="150"
+                                    HorizontalAlignment="Right">
+                            <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}"
+                                   Foreground="Black"
+                                   FontSize="12"
+                                   HorizontalContentAlignment="Right"/>
+                            <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}"
+                                   Foreground="Green"
+                                   FontSize="12"
+                                   HorizontalContentAlignment="Right"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+<!-- -->
+
+
+                <!-- <GridView> <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Symbol}" Width="100"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=PriceUsd , Converter={StaticResource numberConverter}}" Width="auto"></GridViewColumn>
+                                          <GridViewColumnHeader Content="Currency" Visibility="Collapsed"/>-->
+                    <!-- 
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=VolumeUsd24Hr, Converter={StaticResource numberConverter}}" Width="auto">VolumeUsd24Hr</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Vwap24Hr, Converter={StaticResource numberConverter}}" Width="auto">Vwap24Hr</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=MaxSupply, Converter={StaticResource numberConverter}}" Width="auto">MaxSupply</GridViewColumn>
+                </GridView> -->
+                   
+            </ListView.ItemTemplate>
+
         </ListView>
-        <!--<TextBlock Text="View A" FontSize="38"/> 
-        <Button Command="{Binding GetGetCurrenciesCommand}" Width="100" Height="50" Background="Blue"/>-->
 
     </Grid>
 </UserControl>

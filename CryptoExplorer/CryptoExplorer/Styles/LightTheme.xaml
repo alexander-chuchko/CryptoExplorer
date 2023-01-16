@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--Background-->
+    <Color x:Key="Light_Background">#E5E5E5</Color>
+
+    <!-- Light colors -->
+    <Color x:Key="Light/Primary">#596EFB</Color>
+    <Color x:Key="Light/Disacled">#C7CDF5</Color>
+    <Color x:Key="Light/HoverdeFocused">#273BC6</Color>
+    <Color x:Key="Light/Pressed">#192680</Color>
+    <Color x:Key="Light/Variant">#F1F3FD</Color>
+    <Color x:Key="Light/Error">#F24545</Color>
+    <Color x:Key="Light/Confirm">#F6EA62</Color>
+    <Color x:Key="Light/Success">#32D27F</Color>
+
+
+    <!-- Text & Background -->
+    <Color x:Key="System/White">#FEFEFD</Color>
+    <Color x:Key="System/LightGray">#D7DDE8</Color>
+    <Color x:Key="System/Gray">#858E9E</Color>
+    <Color x:Key="System/DarkGray">#3D4E61</Color>
+    <Color x:Key="System/Black">#1E242B</Color>
+
+
+
+</ResourceDictionary>
