@@ -46,6 +46,9 @@ namespace CryptoExplorer
 
         private void OnNavigateToCurrencyDetailsPage(object parametr)
         {
+            switch ()
+            { 
+            }
             _regionManager.RequestNavigate("ContentRegion", (nameof(CurrencyDetailsPage)));
         }
 

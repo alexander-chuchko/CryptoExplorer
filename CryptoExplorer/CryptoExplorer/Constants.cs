@@ -1,4 +1,6 @@
 ﻿
+using CryptoExplorer.Views;
+
 namespace CryptoExplorer
 {
     public class Constants
@@ -12,6 +14,9 @@ namespace CryptoExplorer
         public const string LIMIT_CURRENCIES = "10";
         public const string LIMIT_MARKETS = "10";
         public const string CONTENT_REGION = "ContentRegion";
+
+        public const string CURRENCY_DETAILS_PAGE = nameof(CurrencyDetailsPage);
+        public const string MAINE_PAGE = nameof(MainPage);
 
     }
 }
