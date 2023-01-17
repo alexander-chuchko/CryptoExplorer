@@ -7,41 +7,66 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:constants="clr-namespace:CryptoExplorer"
         mc:Ignorable="d"
-        Title="CryptoExplorer" MinHeight="450" MinWidth="800">
+        Title="CryptoExplorer"
+        Width="850"
+        Height="650">
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding OnLoadedCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <!--    <Frame prism:RegionManager.RegionName="ContentRegionMainWindow" NavigationUIVisibility="Hidden">
-
-
-    </Frame> -->
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*"/>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        
         <StackPanel Orientation="Vertical"
-                    Grid.Column="0">
-            <Button Width="100" Height="30" Margin="20">
-                <TextBlock Text="MainPage" Foreground="Red" FontSize="18"/>
-            </Button>
-            <Button Width="100" Height="30" Margin="20">
-                <TextBlock Text="Graphics" Foreground="Red" FontSize="18"/>
-            </Button>
-            <Button Width="100" Height="30" Margin="20">
-                <TextBlock Text="Settings" Foreground="Red" FontSize="18"/>
-            </Button>
+                    Background="#E5E5E5"
+                    Grid.Column="0"
+                    Margin="5">
 
-            <StackPanel HorizontalAlignment="Center">
-                <TextBlock Text="Settings"
-                           Background="Blue"
-                           Foreground="Black"
+            <TextBlock Text="DashBoard"
+                           Foreground="#1E242B"
+                           FontWeight="Bold"
+                           FontFamily="Montserrat"
+                           FontSize="20"
+                           VerticalAlignment="Center" 
+                           Margin="10,20"/>
+
+            <TextBlock Text="Main"
+                           Foreground="#3D4E61"
+                           FontWeight="DemiBold"
+                           FontFamily="Montserrat"
                            FontSize="18"
-                           VerticalAlignment="Center">
+                           VerticalAlignment="Center"
+                           Margin="10,5"/>
+
+            <TextBlock Text="Details"
+                           Foreground="#3D4E61"
+                           FontWeight="DemiBold"                            
+                           FontFamily="Montserrat"
+                           FontSize="18"
+                           VerticalAlignment="Center"
+                           Margin="10,5"/>
+
+            <TextBlock Text="Сonvert"
+                           Foreground="#3D4E61"
+                           FontWeight="DemiBold"
+                           FontFamily="Montserrat"
+                           FontSize="18"
+                           VerticalAlignment="Center"
+                           Margin="10,5"/>
+
+            <TextBlock Text="Settings"
+                           Foreground="#3D4E61"
+                           FontSize="18"
+                           FontFamily="Montserrat"
+                           FontWeight="DemiBold"
+                           VerticalAlignment="Center"
+                           Margin="10,5">
                     
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -49,20 +74,12 @@
                                                    CommandParameter="{x:Static constants:Constants.CURRENCY_DETAILS_PAGE}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                </TextBlock>
-            </StackPanel>
-
-
+            </TextBlock>
         </StackPanel>
 
         <ContentControl Grid.Column="1"
                         prism:RegionManager.RegionName="ContentRegion"
                         Margin="5" />
-
     </Grid>
-
-    <!--<ContentControl prism:RegionManager.RegionName="ContentRegion" 
-    
-            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"/>-->
 
 </Window>

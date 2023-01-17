@@ -5,113 +5,199 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              xmlns:local="clr-namespace:CryptoExplorer.Converters" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Background="#E5E5E5">
-    <Grid MinHeight="500" MinWidth="500">
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="#FEFEFD">
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.1*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Vertical"
-                    Background="#E5E5E5" 
                     VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
+                    HorizontalAlignment="Stretch">
+            
             <TextBlock Text="Top 10 Binance Market Currencies" 
-                       FontSize="25"
+                       FontSize="16"
                        FontWeight="Bold"
+                       FontFamily="Montserrat"
                        Foreground="#1E242B"
+                       Margin="5"
                        HorizontalAlignment="Center"/>
+            
+            <TextBox Height="26"
+                     Margin="0"
+                     Tag="Search text ..."
+                     VerticalAlignment="Bottom"
+                     BorderThickness="1"
+                     BorderBrush="#69000000" 
+                     Background="#F1F3FD"
+                     Text=""
+                     FontSize="14"
+                     FontWeight="Bold"
+                     FontFamily="Montserrat"
+                     HorizontalAlignment="Stretch"/>
         </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*" />
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
 
+            <Label Content="Name" 
+                    Margin="20,0,0,0"
+                    FontFamily="Montserrat"
+                    Grid.Column="0"
+                    Foreground="#3D4E61"
+                    HorizontalContentAlignment="Left"
+                    VerticalContentAlignment="Bottom"
+                    FontSize="13"/>
+                
+                <Label Content="Price" 
+                       Grid.Column="1"
+                        Margin="20,0"
+                       FontFamily="Montserrat"
+                       Foreground="#3D4E61"
+                       VerticalContentAlignment="Bottom"
+                       HorizontalContentAlignment="Left"
+                       FontSize="13"/>
+
+                <Label Content="Volume 24 h" 
+                                              
+                       Grid.Column="2"
+                       FontFamily="Montserrat"
+                       Foreground="#3D4E61"
+                       VerticalContentAlignment="Bottom"
+                       HorizontalContentAlignment="Center"
+                       FontSize="13"/>
+
+            <Label Content="Supply" 
+                   Grid.Column="3"
+                   Margin="0,0"
+                   Foreground="#3D4E61"
+                   VerticalContentAlignment="Bottom"
+                   HorizontalContentAlignment="Right"
+                   FontSize="13"/>
+
+            <Label Content="MarketCapUsd" 
+                   Grid.Column="4"
+                   Margin="0,0,20,0"
+                   Foreground="#3D4E61"
+                   VerticalContentAlignment="Bottom"
+                   HorizontalContentAlignment="Right"
+                   FontSize="13"/>
+        </Grid>
+        
         <ListView Name="currenciesList"
                   Height="auto"
-                  Width="auto"
                   VerticalContentAlignment="Stretch"
-                  Background="#E5E5E5"
+                  HorizontalAlignment="Stretch"
+                  Background="#F1F3FD"
                   ItemsSource="{Binding СurrencyList}"
                   SelectedItem="{Binding Currency}"
-                  Grid.Row="1">
+                  Grid.Row="2">
             
             <ListView.Resources>
                 <local:NumberConverter x:Key="numberConverter"/>
                 <Style TargetType="GridViewColumnHeader">
-                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Setter Property="Visibility" Value="Hidden" />
                 </Style>
             </ListView.Resources>
+            
             <ListView.ItemContainerStyle>
                 
                 <Style TargetType="ListViewItem">
-                    <Setter Property="Background" Value="AliceBlue" />
+                    <Setter Property="Background" Value="#F1F3FD" />
                     <Setter Property="BorderBrush" Value="#F1F3FD" />
-                    <Setter Property="BorderThickness" Value="4" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment"  Value="Stretch"/>
                     <!--<Setter Property="Height" Value="60" />
                      <Setter Property="FontSize" Value="18"/>  -->
                     <Style.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" Value="Red" />
+                            <Setter Property="Foreground" Value="#F1F3FD" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
             </ListView.ItemContainerStyle>
+            
             <ListView.ItemTemplate>
+                
                 <DataTemplate>
-                    <Grid Width="{Binding ElementName=currenciesList, Path=Width}">
+                    
+                    <Grid HorizontalAlignment="Stretch" 
+                          VerticalAlignment="Stretch">
+                        
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0"
-                                    HorizontalAlignment="Stretch">
-                            <Label Content="{Binding Name}" 
-                                   Foreground="Red"
-                                   HorizontalContentAlignment="Left"
-                                   FontSize="16"/>
-                            
-                            <Label Content="{Binding Symbol}"
-                                   Foreground="Green"
-                                   HorizontalContentAlignment="Left"
-                                   
-                                   FontSize="12"/>
-                        </StackPanel>
+                        
+                        <Label Content="{Binding Name}" 
+                                Foreground="Red"
+                                Grid.Column="0"
+                                Margin="20,0,0,0"
+                                HorizontalContentAlignment="Left"
+                                FontFamily="Montserrat"
+                                FontSize="16"/>
 
-                        <StackPanel Grid.Column="2"
-                                    Width="150"
-                                    HorizontalAlignment="Right">
-                            <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}"
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   HorizontalContentAlignment="Right"/>
-                            <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}"
-                                   Foreground="Green"
-                                   FontSize="12"
-                                   HorizontalContentAlignment="Right"/>
-                        </StackPanel>
+                        <Label Content="{Binding Symbol}"
+                                Foreground="Green"
+                                Grid.Column="1"
+                                Margin="0,0"
+                                FontFamily="Montserrat"
+                                HorizontalContentAlignment="Left"
+                                FontSize="14"/>
+
+                        <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}"
+                                Foreground="Black"
+                                Grid.Column="2"
+                                FontSize="14"
+                                FontFamily="Montserrat"
+                                HorizontalContentAlignment="Center"/>
+
+                        <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}"
+                                Foreground="Green"
+                                Grid.Column="3"
+                                Margin="0,0"
+                                FontFamily="Montserrat"
+                                FontSize="14"                           
+                                HorizontalContentAlignment="Right"/>
+
+                        <Label Content="{Binding MarketCapUsd, Converter={StaticResource numberConverter}}"
+                               Margin="0,0,20,0"
+                               Foreground="Green"
+                               Grid.Column="4"
+                               FontFamily="Montserrat"
+                               FontSize="14"
+                               HorizontalContentAlignment="Right"/>
+
                     </Grid>
+                    
                 </DataTemplate>
-<!-- -->
 
-
-                <!-- <GridView> <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Symbol}" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=PriceUsd , Converter={StaticResource numberConverter}}" Width="auto"></GridViewColumn>
-                                          <GridViewColumnHeader Content="Currency" Visibility="Collapsed"/>-->
-                    <!-- 
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=VolumeUsd24Hr, Converter={StaticResource numberConverter}}" Width="auto">VolumeUsd24Hr</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Vwap24Hr, Converter={StaticResource numberConverter}}" Width="auto">Vwap24Hr</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=MaxSupply, Converter={StaticResource numberConverter}}" Width="auto">MaxSupply</GridViewColumn>
-                </GridView> -->
-                   
             </ListView.ItemTemplate>
 
         </ListView>
 
     </Grid>
+    
 </UserControl>
