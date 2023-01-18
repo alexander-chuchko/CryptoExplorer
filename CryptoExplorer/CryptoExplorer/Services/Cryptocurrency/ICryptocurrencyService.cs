@@ -11,5 +11,6 @@ namespace CryptoExplorer.Services.Cryptocurrency
     {
         Task<IEnumerable<Currency>> GetTopCurrenciesAsync();
         Task<IEnumerable<Market>> GetMarketsAsync(string id);
+        IEnumerable<Currency> GetFindedCurrencies(IEnumerable<Currency> currencies, string keyWord);
     }
 }

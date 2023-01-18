@@ -71,5 +71,25 @@ namespace CryptoExplorer.Services.Cryptocurrency
 
             return markets;
         }
+
+        public IEnumerable<Currency> GetFindedCurrencies(IEnumerable<Currency> currencies, string keyWord)
+        {
+            IEnumerable<Currency>? selectedCurrencies = null;
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(keyWord))
+                {
+                    selectedCurrencies = currencies.Where(x => (x.Name.StartsWith(keyWord, StringComparison.OrdinalIgnoreCase) && x.Name.Contains(keyWord)) || 
+                    (x.Symbol.StartsWith(keyWord, StringComparison.OrdinalIgnoreCase) && x.Symbol.Contains(keyWord))).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            return selectedCurrencies;
+        }
     }
 }

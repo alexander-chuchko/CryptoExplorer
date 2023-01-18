@@ -85,7 +85,7 @@ namespace CryptoExplorer.ViewModels
             }
             else if (args.PropertyName == nameof(SearchText))
             {
-            
+                
             }
         }
 
