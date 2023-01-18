@@ -44,6 +44,13 @@ namespace CryptoExplorer.ViewModels
             set { SetProperty(ref _currency, value); }
         }
 
+        private string? _serachText;
+        public string? SearchText
+        {
+            get { return _serachText; }
+            set { SetProperty(ref _serachText, value); }
+        }
+
         private ICommand _GetGetCurrenciesCommand;
         public ICommand GetGetCurrenciesCommand => _GetGetCurrenciesCommand ?? new DelegateCommand(OnGetCurrencies);
 
@@ -75,6 +82,10 @@ namespace CryptoExplorer.ViewModels
                 var navigationParameters = new NavigationParameters();
                 navigationParameters.Add(nameof(Currency), Currency);
                 _regionManager.RequestNavigate(Constants.CONTENT_REGION, nameof(CurrencyDetailsPage), navigationParameters);
+            }
+            else if (args.PropertyName == nameof(SearchText))
+            {
+            
             }
         }
 

@@ -21,7 +21,7 @@
 
         <!--Search Bar-->
 
-        <customSearchBar:CustomSearchBar></customSearchBar:CustomSearchBar>
+        <customSearchBar:CustomSearchBar SearchText="{Binding SearchText, Mode=TwoWay}"/>
         <!--   <Border BorderBrush="#40FFFFFF" BorderThickness="1" CornerRadius="2" Height="30" Grid.Row="0">
             <Border BorderBrush="#80000000" BorderThickness="1,1,0,0" CornerRadius="2">
                 <Border BorderBrush="#30000000" BorderThickness="0,0,1,1" CornerRadius="2">

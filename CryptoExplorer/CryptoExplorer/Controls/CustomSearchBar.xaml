@@ -35,7 +35,6 @@
                                    HorizontalAlignment="Stretch" 
                                    Margin="1"
                                    x:Name="imageButton"
-                                   Source="{Binding ImagePath, Mode=TwoWay}"
                                    MouseLeftButtonDown="OnClickImage">
                                 <!-- 
                                 <Image.Source>
