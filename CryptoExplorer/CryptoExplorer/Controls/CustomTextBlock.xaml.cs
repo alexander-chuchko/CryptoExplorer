@@ -87,7 +87,6 @@ namespace CryptoExplorer.Controls
         {
             var listBox = (ListBox)sender;
             SelectedCurrency = (Currency)listBox.SelectedItem;
-
         }
 
         #endregion

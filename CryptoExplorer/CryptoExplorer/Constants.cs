@@ -18,5 +18,9 @@ namespace CryptoExplorer
         public const string CURRENCY_DETAILS_PAGE = "CurrencyDetailsPage";
         public const string MAIN_PAGE = "MainPage";
 
+        //Path images
+        public const string CLEAR_LIGHT = "/images/ic_clear.png";
+        public const string SEARCH_LIGHT = "/images/ic_search.png";
+
     }
 }

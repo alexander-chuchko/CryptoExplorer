@@ -10,6 +10,9 @@
     <Compile Update="Controls\CustomTextBlock.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\CustomSearchBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\CurrencyDetailsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -19,6 +22,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\CustomTextBlock.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\CustomSearchBar.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

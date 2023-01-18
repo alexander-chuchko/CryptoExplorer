@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel Background="#f8f5f5"
                     Margin="5">
-
+            
             <Border Width="auto" 
                     Height="auto"
                     Margin="20,20"

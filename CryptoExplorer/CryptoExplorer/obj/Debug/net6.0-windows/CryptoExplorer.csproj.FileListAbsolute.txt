@@ -37,3 +37,5 @@ E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\Crypto
 E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\obj\Debug\net6.0-windows\ref\CryptoExplorer.dll
 E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\obj\Debug\net6.0-windows\Controls\CustomTextBlock.g.cs
 E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\obj\Debug\net6.0-windows\Controls\CustomTextBlock.baml
+E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\obj\Debug\net6.0-windows\Controls\CustomSearchBar.g.cs
+E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\obj\Debug\net6.0-windows\Controls\CustomSearchBar.baml

@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\ic_clear.png" />
+    <None Remove="Images\ic_search.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\ic_clear.png" />
+    <Resource Include="Images\ic_search.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
   </ItemGroup>
