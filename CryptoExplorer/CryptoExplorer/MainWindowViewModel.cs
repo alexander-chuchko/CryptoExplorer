@@ -1,10 +1,12 @@
 ﻿
+using CryptoExplorer.Models;
 using CryptoExplorer.Views;
 using Prism.Commands;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
+using System.Threading;
 using System.Windows.Input;
 
 namespace CryptoExplorer
@@ -20,9 +22,17 @@ namespace CryptoExplorer
             _regionManager = regionManager;
             this._container = container;
             OnLoadedCommand = new DelegateCommand(OnLoaded);
+
         }
 
         #region   ---   PublicProperties   ---
+
+        private string? _text = "dasdasdas";
+        public string? Text1
+        {
+            get { return _text; }
+            set { SetProperty(ref _text, value); }
+        }
 
         public ICommand OnLoadedCommand { get; }
 
@@ -39,6 +49,7 @@ namespace CryptoExplorer
             //IRegion mainRegion = _regionManager.Regions["ContentRegion"];
             //var view = _container.Resolve<MainPage>();
             //mainRegion.Add(view);
+            Text1 = "@@@@";
 
             _regionManager.RequestNavigate("ContentRegion", (nameof(MainPage)));
 

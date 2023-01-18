@@ -52,7 +52,6 @@
                 <ColumnDefinition Width="0.2*"/>
                 <ColumnDefinition Width="0.2*"/>
                 <ColumnDefinition Width="0.2*"/>
-                <ColumnDefinition Width="0.2*"/>
             </Grid.ColumnDefinitions>
 
             <Label Content="Name" 
@@ -73,8 +72,7 @@
                        HorizontalContentAlignment="Left"
                        FontSize="13"/>
 
-                <Label Content="Volume 24 h" 
-                                              
+                <Label Content="Volume 24 h"                   
                        Grid.Column="2"
                        FontFamily="Montserrat"
                        Foreground="#3D4E61"
@@ -90,13 +88,6 @@
                    HorizontalContentAlignment="Right"
                    FontSize="13"/>
 
-            <Label Content="MarketCapUsd" 
-                   Grid.Column="4"
-                   Margin="0,0,20,0"
-                   Foreground="#3D4E61"
-                   VerticalContentAlignment="Bottom"
-                   HorizontalContentAlignment="Right"
-                   FontSize="13"/>
         </Grid>
         
         <ListView Name="currenciesList"
@@ -121,6 +112,7 @@
                     <Setter Property="Background" Value="#F1F3FD" />
                     <Setter Property="BorderBrush" Value="#F1F3FD" />
                     <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="Focusable" Value="False" />
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     <Setter Property="VerticalContentAlignment"  Value="Stretch"/>
                     <!--<Setter Property="Height" Value="60" />
@@ -144,7 +136,6 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="0.2*"/>
@@ -181,14 +172,6 @@
                                 FontFamily="Montserrat"
                                 FontSize="14"                           
                                 HorizontalContentAlignment="Right"/>
-
-                        <Label Content="{Binding MarketCapUsd, Converter={StaticResource numberConverter}}"
-                               Margin="0,0,20,0"
-                               Foreground="Green"
-                               Grid.Column="4"
-                               FontFamily="Montserrat"
-                               FontSize="14"
-                               HorizontalContentAlignment="Right"/>
 
                     </Grid>
                     
