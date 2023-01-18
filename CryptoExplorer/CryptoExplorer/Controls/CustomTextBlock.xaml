@@ -32,7 +32,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0"
-                               x:Name="MyTextBlock"
+                               x:Name="titleTextBlock"
                                Foreground="#1E242B"
                                FontWeight="Bold"
                                FontFamily="Montserrat"
@@ -46,7 +46,7 @@
                                Grid.Row="1"
                                Margin="8"/>
 
-                    <ListBox Name="phonesList"
+                    <ListBox Name="stringSheet"
                              BorderThickness="0"
                              Grid.Row="2" 
                              Margin="1"

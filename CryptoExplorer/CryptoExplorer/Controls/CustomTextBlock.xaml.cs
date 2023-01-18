@@ -62,7 +62,7 @@ namespace CryptoExplorer.Controls
 
         private void OnSetText(DependencyPropertyChangedEventArgs e)
         {
-            MyTextBlock.Text = (string)e.NewValue;
+            titleTextBlock.Text = (string)e.NewValue;
         }
 
     }
