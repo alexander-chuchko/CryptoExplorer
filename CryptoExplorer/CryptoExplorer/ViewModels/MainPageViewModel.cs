@@ -4,9 +4,9 @@ using CryptoExplorer.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace CryptoExplorer.ViewModels
@@ -35,6 +35,13 @@ namespace CryptoExplorer.ViewModels
         {
             get { return _currencyList; }
             set { SetProperty(ref _currencyList, value); }
+        }
+
+        private IEnumerable<Currency>? _currencyAllList;
+        public IEnumerable<Currency>? CurrencyAllList
+        {
+            get { return _currencyAllList; }
+            set { SetProperty(ref _currencyAllList, value); }
         }
 
         private Currency? _currency;
@@ -66,7 +73,10 @@ namespace CryptoExplorer.ViewModels
         {
             if (_cryptocurrencyService is not null)
             {
-                СurrencyList = await _cryptocurrencyService.GetTopCurrenciesAsync();//.GetAwaiter().GetResult();
+                //СurrencyList = await _cryptocurrencyService.GetTopCurrenciesAsync();//.GetAwaiter().GetResult();
+                //CurrencyAllList
+                CurrencyAllList = await _cryptocurrencyService.GetTopCurrenciesAsync();
+                СurrencyList = CurrencyAllList.Take(10);
             }
         }
 
@@ -85,7 +95,18 @@ namespace CryptoExplorer.ViewModels
             }
             else if (args.PropertyName == nameof(SearchText))
             {
-                
+                if (string.IsNullOrEmpty(SearchText))
+                {
+                    СurrencyList = CurrencyAllList?.Take(10);
+                }
+                else
+                {
+                    if (CurrencyAllList is not null && SearchText is not null)
+                    {
+                        var findedCurrencies = _cryptocurrencyService?.GetFindedCurrencies(CurrencyAllList, SearchText);
+                        СurrencyList = findedCurrencies;
+                    }
+                }
             }
         }
 

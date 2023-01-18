@@ -34,6 +34,7 @@
                                    VerticalAlignment="Stretch"
                                    HorizontalAlignment="Stretch" 
                                    Margin="1"
+                                   Source="/images/ic_search.png"
                                    x:Name="imageButton"
                                    MouseLeftButtonDown="OnClickImage">
                                 <!-- 

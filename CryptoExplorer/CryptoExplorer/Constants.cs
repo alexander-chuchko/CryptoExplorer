@@ -11,7 +11,7 @@ namespace CryptoExplorer
         public const string API_NAME = "apikey";
         public const string BASE_URL = "https://api.coincap.io/v2/assets";
 
-        public const string LIMIT_CURRENCIES = "10";
+        public const string LIMIT_CURRENCIES = "50";
         public const string LIMIT_MARKETS = "10";
         public const string CONTENT_REGION = "ContentRegion";
 

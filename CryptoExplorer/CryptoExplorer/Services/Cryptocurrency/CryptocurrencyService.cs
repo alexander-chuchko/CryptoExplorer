@@ -78,7 +78,7 @@ namespace CryptoExplorer.Services.Cryptocurrency
 
             try
             {
-                if (string.IsNullOrWhiteSpace(keyWord))
+                if (!string.IsNullOrWhiteSpace(keyWord))
                 {
                     selectedCurrencies = currencies.Where(x => (x.Name.StartsWith(keyWord, StringComparison.OrdinalIgnoreCase) && x.Name.Contains(keyWord)) || 
                     (x.Symbol.StartsWith(keyWord, StringComparison.OrdinalIgnoreCase) && x.Symbol.Contains(keyWord))).ToList();

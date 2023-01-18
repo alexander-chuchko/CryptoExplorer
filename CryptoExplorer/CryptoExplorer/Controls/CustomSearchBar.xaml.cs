@@ -55,12 +55,18 @@ namespace CryptoExplorer.Controls
                 if (!string.IsNullOrEmpty(newText) && newText.Length > 0)
                 {
                     SearchText = newText;
-                    imageButton.Source = GetBitmapImage(Constants.CLEAR_LIGHT);
+                    imageButton.Source = GetBitmapImage("/images/ic_clear.png");
 
                 }
                 else
                 {
-                    imageButton.Source = GetBitmapImage(Constants.SEARCH_LIGHT);
+                    if (SearchText.Length > 0)
+                    {
+                        ClearSearhBar();
+                    }
+
+                    imageButton.Source = GetBitmapImage("/images/ic_search.png");
+
                 }
             }
         }
@@ -69,8 +75,14 @@ namespace CryptoExplorer.Controls
         {
             if (SearchText.Length > 0)
             {
-                searchBar.Text = string.Empty;
+                ClearSearhBar();
             }
+        }
+
+        private void ClearSearhBar()
+        {
+            searchBar.Text = string.Empty;
+            SearchText = string.Empty;
         }
 
         private BitmapImage GetBitmapImage(string path)
