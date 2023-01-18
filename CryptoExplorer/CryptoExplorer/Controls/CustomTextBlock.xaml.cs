@@ -1,43 +1,18 @@
-﻿using Prism.Mvvm;
-using System;
+﻿using CryptoExplorer.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CryptoExplorer.Controls
 {
-    /// <summary>
-    /// Interaction logic for CustomTextBlock.xaml
-    /// </summary>
     public partial class CustomTextBlock : UserControl
     {
         public CustomTextBlock()
         {
             InitializeComponent();
-            //this.DataContext = this;
-        }
-        /*
-        public ICommand SettingsTapCommand
-        {
-            get => (ICommand)GetValue(SettingsTapCommandProperty);
-            set => SetValue(SettingsTapCommandProperty, value);
         }
 
-        public bool IsCheckable
-        {
-            get { return (bool)GetValue(IsCheckableProperty); }
-            set { SetValue(IsCheckableProperty, value); }
-        }*/
+        #region   ---   Public properties   ---
 
         public static readonly DependencyProperty SetTextProperty =
             DependencyProperty.Register(
@@ -46,24 +21,75 @@ namespace CryptoExplorer.Controls
                 typeof(CustomTextBlock),
                 new PropertyMetadata(string.Empty, new PropertyChangedCallback(OnSetTextChanged)));
 
-        private static void OnSetTextChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if(d is CustomTextBlock customTextBlock)
-            {
-                customTextBlock.OnSetText(e);
-            }
-        }
-
         public string SetText
         {
             get { return (string)GetValue(SetTextProperty); }
             set { SetValue(SetTextProperty, value); }
         }
 
+        public static readonly DependencyProperty SetListProperty =
+            DependencyProperty.Register(
+                nameof(SetList),
+                typeof(IEnumerable<Currency>),
+                typeof(CustomTextBlock),
+                new PropertyMetadata(null, new PropertyChangedCallback(OnSetListChanged)));
+
+        public IEnumerable<Currency> SetList
+        {
+            get { return (IEnumerable<Currency>)GetValue(SetTextProperty); }
+            set { SetValue(SetTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty SelectedCurrencyProperty =
+            DependencyProperty.Register(
+                nameof(SelectedCurrency),
+                typeof(Currency),
+                typeof(CustomTextBlock),
+                new PropertyMetadata(null));
+
+        public Currency SelectedCurrency
+        {
+            get { return (Currency)GetValue(SelectedCurrencyProperty); }
+            set { SetValue(SelectedCurrencyProperty, value); }
+        }
+
+        #endregion
+
+
+        #region   ---   Private helpers   ---
+
+        private static void OnSetTextChanged(DependencyObject control, DependencyPropertyChangedEventArgs e)
+        {
+            if (control is CustomTextBlock customTextBlock)
+            {
+                customTextBlock.OnSetText(e);
+            }
+        }
         private void OnSetText(DependencyPropertyChangedEventArgs e)
         {
             titleTextBlock.Text = (string)e.NewValue;
         }
 
+        private static void OnSetListChanged(DependencyObject control, DependencyPropertyChangedEventArgs e)
+        {
+            if (control is CustomTextBlock customTextBlock)
+            {
+                customTextBlock.OnSetList(e);
+            }
+        }
+
+        private void OnSetList(DependencyPropertyChangedEventArgs e)
+        {
+            stringSheet.ItemsSource = (IEnumerable<Currency>)e.NewValue;
+        }
+
+        private void OnSelectedElement(object sender, SelectionChangedEventArgs e)
+        {
+            var listBox = (ListBox)sender;
+            SelectedCurrency = (Currency)listBox.SelectedItem;
+
+        }
+
+        #endregion
     }
 }
