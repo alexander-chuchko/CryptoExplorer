@@ -3,6 +3,7 @@ using CryptoExplorer.Services.SettingsManager;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace CryptoExplorer.ViewModels
@@ -104,6 +105,9 @@ namespace CryptoExplorer.ViewModels
         private ICommand _GoBackCommand;
         public ICommand GoBackCommand => _GoBackCommand ?? new DelegateCommand(OnGoBackCommand);
 
+        private ICommand _FollowTheLinkCommand;
+        public ICommand FollowTheLinkCommand => _FollowTheLinkCommand ?? new DelegateCommand<object>(OnFollowTheLink);
+
         #endregion
 
         #region --- Private helpers ---
@@ -130,16 +134,36 @@ namespace CryptoExplorer.ViewModels
 
         private void InitializationData(Currency currency)
         {
-            Name = $"Price statistics {currency.Name}";
-            PriceUsd = currency.PriceUsd;
-            Rank = currency.Rank;   
-            VolumeUsd24Hr = currency.VolumeUsd24Hr;
-            Supply = currency.Supply;
-            MaxSupply = currency.MaxSupply; 
-            MarketCapUsd = currency.MarketCapUsd;
-            ChangePercent24Hr = currency.ChangePercent24Hr;
-            Мwap24Hr = currency.Vwap24Hr;
-            Explorer = currency.Explorer;
+            if (currency is not null)
+            {
+                Name = $"Price statistics {currency.Name}";
+                PriceUsd = OnReplacingValue(currency.PriceUsd);
+                Rank = OnReplacingValue(currency.Rank);
+                VolumeUsd24Hr = OnReplacingValue(currency.VolumeUsd24Hr);
+                Supply = OnReplacingValue(currency.Supply);
+                MaxSupply = OnReplacingValue(currency.MaxSupply);
+                MarketCapUsd = OnReplacingValue(currency.MarketCapUsd);
+                ChangePercent24Hr = OnReplacingValue(currency.ChangePercent24Hr);
+                Мwap24Hr = OnReplacingValue(currency.Vwap24Hr);
+                Explorer = OnReplacingValue(currency.Explorer);
+            }
+        }
+
+        private string OnReplacingValue(string ? parametr)
+        {
+            return !string.IsNullOrEmpty(parametr) ? parametr : "-";
+        }
+
+        private void OnFollowTheLink(object parametr)
+        {
+            if (parametr is string url)
+            {
+                System.Diagnostics.Process.Start(new ProcessStartInfo
+                {
+                    FileName = url,
+                    UseShellExecute = true
+                });
+            }
         }
 
         #endregion
@@ -162,6 +186,7 @@ namespace CryptoExplorer.ViewModels
             Currency = (Currency)navigationContext.Parameters[nameof(Currency)];
 
             InitializationData(Currency);
+
         }
 
         #endregion

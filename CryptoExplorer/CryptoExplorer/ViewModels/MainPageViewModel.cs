@@ -73,8 +73,6 @@ namespace CryptoExplorer.ViewModels
         {
             if (_cryptocurrencyService is not null)
             {
-                //СurrencyList = await _cryptocurrencyService.GetTopCurrenciesAsync();//.GetAwaiter().GetResult();
-                //CurrencyAllList
                 CurrencyAllList = await _cryptocurrencyService.GetTopCurrenciesAsync();
                 СurrencyList = CurrencyAllList.Take(10);
             }

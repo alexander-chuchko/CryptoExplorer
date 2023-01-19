@@ -3,22 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CryptoExplorer.Views"
+             xmlns:converter="clr-namespace:CryptoExplorer.Converters" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:prism="http://prismlibrary.com/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <UserControl.Resources>
         <Style TargetType="TextBlock" x:Key="parameterName">
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Montserrat"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="30,0"/>
             <Setter Property="Foreground" Value="Black"/>
         </Style>
     </UserControl.Resources>
 
     <Grid Background="#f8f5f5">
+        <Grid.Resources>
+            <converter:NumberConverter x:Key="numberConverter"/>
+        </Grid.Resources>
+        
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -33,19 +40,29 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
 
         <!-- Title -->
-
-        <TextBlock Text="Price statistics Bitcoin" 
+        <StackPanel Grid.ColumnSpan="2"
+                    Grid.Row="0" Orientation="Vertical" 
+                    VerticalAlignment="Center"
+                    Margin="30,0">
+            
+            <TextBlock Text="Price statistics Bitcoin" 
                    FontSize="20"
                    FontFamily="Montserrat"
                    FontWeight="DemiBold"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   Grid.ColumnSpan="2"
-                   Grid.Row="0"/>
+                   HorizontalAlignment="Center"/>
+
+            <Separator Background="#E5E5E5" 
+                               Height="2"
+                               Grid.Row="1"
+                               VerticalContentAlignment="Bottom"/>
+        </StackPanel>
+
 
         <!-- Name parametrs -->
 
@@ -84,52 +101,79 @@
                    Grid.Column="0"                  
                    Style="{StaticResource parameterName}"/>
 
-        <TextBlock Text="Explorer" 
+        <TextBlock Text="Market Cap Usd" 
                    Grid.Row="8"
+                   Grid.Column="0"                  
+                   Style="{StaticResource parameterName}"/>
+
+        <TextBlock Text="Explorer" 
+                   Grid.Row="9"
                    Grid.Column="0"
                    Style="{StaticResource parameterName}"/>
 
         <!-- Values parametrs-->
 
-        <TextBlock Text="Price usd" 
+        <TextBlock Text="{Binding PriceUsd, Converter={StaticResource numberConverter}}" 
                    Grid.Row="1"
                    Grid.Column="1"
                    Style="{StaticResource parameterName}"/>
 
-        <TextBlock Text="Volume Usd 24Hr" 
+        <TextBlock Text="{Binding VolumeUsd24Hr, Converter={StaticResource numberConverter}}" 
                    Grid.Row="2"
                    Grid.Column="2"
                    Style="{StaticResource parameterName}"/>
 
-        <TextBlock Text="Market Rank" 
+        <TextBlock Text="{Binding Rank}" 
                    Grid.Row="3"
                    Grid.Column="3"
                    Style="{StaticResource parameterName}"/>
 
-        <TextBlock Text="Vwap 24 Hr" 
+        <TextBlock Text="{Binding Мwap24Hr, Converter={StaticResource numberConverter}}" 
                    Grid.Row="4"
                    Grid.Column="4"
                    Style="{StaticResource parameterName}"/>
 
-        <TextBlock Text="Supply" 
+        <TextBlock Text="{Binding Supply, Converter={StaticResource numberConverter}}" 
                    Grid.Row="5"
                    Grid.Column="5"
                    Style="{StaticResource parameterName}"/>
 
-        <TextBlock Text="Max Supply" 
+        <TextBlock Text="{Binding MaxSupply, Converter={StaticResource numberConverter}}" 
                    Grid.Row="6"
                    Grid.Column="1"
                    Style="{StaticResource parameterName}"/>
 
-        <TextBlock Text="Change Percent 24 Hr" 
+        <TextBlock Text="{Binding ChangePercent24Hr, Converter={StaticResource numberConverter}}" 
                    Grid.Row="7"
                    Grid.Column="1"                  
                    Style="{StaticResource parameterName}"/>
 
-        <TextBlock Text="Explorer" 
+        <TextBlock Text="{Binding MarketCapUsd, Converter={StaticResource numberConverter}}" 
                    Grid.Row="8"
-                   Grid.Column="1"
+                   Grid.Column="1"                  
                    Style="{StaticResource parameterName}"/>
+  
+              <TextBlock Text="{Binding Explorer}" 
+                         x:Name="linkSource"
+                         Grid.Row="9"
+                         Grid.Column="1"
+                         Foreground="Blue"
+                         TextDecorations="UnderLine"
+                         FontSize="14"
+                         FontFamily="Monserrat"
+                         FontWeight="DemiBold"
+                         Margin="30,0"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="left">
+            
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <prism:InvokeCommandAction Command="{Binding FollowTheLinkCommand}" 
+                                                   CommandParameter="{Binding ElementName=linkSource, Path=Text}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            
+        </TextBlock>  
 
     </Grid>
     
