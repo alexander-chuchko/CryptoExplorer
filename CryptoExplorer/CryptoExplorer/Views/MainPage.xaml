@@ -8,7 +8,23 @@
              xmlns:customSearchBar="clr-namespace:CryptoExplorer.Controls"
              d:DesignHeight="450"
              d:DesignWidth="800"
-             Background="#FEFEFD">
+             Background="#f8f5f5">
+    
+    <UserControl.Resources>
+        
+        <Style TargetType="Label" x:Key="columName">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            <Setter Property="Foreground" Value="#3D4E61"/>
+        </Style>
+
+        <Style TargetType="Label" x:Key="columValues">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Montserrat"/>
+        </Style>
+        
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -22,73 +38,6 @@
         <!--Search Bar-->
 
         <customSearchBar:CustomSearchBar SearchText="{Binding SearchText, Mode=TwoWay}"/>
-        <!--   <Border BorderBrush="#40FFFFFF" BorderThickness="1" CornerRadius="2" Height="30" Grid.Row="0">
-            <Border BorderBrush="#80000000" BorderThickness="1,1,0,0" CornerRadius="2">
-                <Border BorderBrush="#30000000" BorderThickness="0,0,1,1" CornerRadius="2">
-                    <Border BorderBrush="#F0FFFFFF" BorderThickness="1" CornerRadius="1">
-                        
-                        <Grid Background="Transparent">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="25"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBox Background="#C0FFFFFF"
-                                     Grid.Column="0"
-                                     MaxLength="40"
-                                     BorderThickness="0"
-                                     VerticalAlignment="Center"
-                                     VerticalContentAlignment="Center"
-                                     Tag="fsdfssdfsd" 
-                                     ForceCursor="True">
-                            </TextBox>
-
-                            <Image Grid.Column="1"
-                                   VerticalAlignment="Stretch"
-                                   HorizontalAlignment="Stretch" 
-                                   Margin="1">
-                                <Image.Source>
-                                    <BitmapImage DecodePixelWidth="300" 
-                                                 UriSource="/images/ic_search.png" />
-                                </Image.Source>
-                            </Image>
-
-                        </Grid>
-                    </Border>
-                </Border>
-            </Border>
-        </Border>
-        
-        
-        -->
-        
-        <!--
-        <StackPanel Orientation="Vertical"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Stretch">
-            
-            <TextBlock Text="Top 10 Binance Market Currencies" 
-                       FontSize="16"
-                       FontWeight="Bold"
-                       FontFamily="Montserrat"
-                       Foreground="#1E242B"
-                       Margin="5"
-                       HorizontalAlignment="Center"/>
-            
-            <TextBox Height="26"
-                     Margin="0"
-                     Tag="Search text ..."
-                     VerticalAlignment="Bottom"
-                     BorderThickness="1"
-                     BorderBrush="#69000000" 
-                     Background="#F1F3FD"
-                     Text=""
-                     FontSize="14"
-                     FontWeight="Bold"
-                     FontFamily="Montserrat"
-                     HorizontalAlignment="Stretch"/>
-        </StackPanel> -->
-
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -102,38 +51,27 @@
             </Grid.ColumnDefinitions>
 
             <Label Content="Name" 
-                    Margin="20,0,0,0"
-                    FontFamily="Montserrat"
-                    Grid.Column="0"
-                    Foreground="#3D4E61"
-                    HorizontalContentAlignment="Left"
-                    VerticalContentAlignment="Bottom"
-                    FontSize="13"/>
-                
-                <Label Content="Price" 
-                       Grid.Column="1"
-                        Margin="20,0"
-                       FontFamily="Montserrat"
-                       Foreground="#3D4E61"
-                       VerticalContentAlignment="Bottom"
-                       HorizontalContentAlignment="Left"
-                       FontSize="13"/>
+                   Margin="20,0,0,0"
+                   Grid.Column="0"
+                   HorizontalContentAlignment="Left"
+                   Style="{StaticResource columName}"/>
 
-                <Label Content="Volume 24 h"                   
-                       Grid.Column="2"
-                       FontFamily="Montserrat"
-                       Foreground="#3D4E61"
-                       VerticalContentAlignment="Bottom"
-                       HorizontalContentAlignment="Center"
-                       FontSize="13"/>
+            <Label Content="Price" 
+                   Grid.Column="1"
+                   Margin="20,0"
+                   HorizontalContentAlignment="Left"
+                   Style="{StaticResource columName}"/>
+            
+            <Label Content="Volume 24 h"                   
+                   Grid.Column="2"
+                   HorizontalContentAlignment="Center"
+                   Style="{StaticResource columName}"/>
 
             <Label Content="Supply" 
                    Grid.Column="3"
-                   Margin="0,0"
-                   Foreground="#3D4E61"
-                   VerticalContentAlignment="Bottom"
+                   Margin="20,0"
                    HorizontalContentAlignment="Right"
-                   FontSize="13"/>
+                   Style="{StaticResource columName}"/>
 
         </Grid>
         
@@ -162,8 +100,6 @@
                     <Setter Property="Focusable" Value="False" />
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     <Setter Property="VerticalContentAlignment"  Value="Stretch"/>
-                    <!--<Setter Property="Height" Value="60" />
-                     <Setter Property="FontSize" Value="18"/>  -->
                     <Style.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Foreground" Value="#F1F3FD" />
@@ -182,6 +118,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="0.2*"/>
@@ -190,35 +127,31 @@
                         </Grid.ColumnDefinitions>
                         
                         <Label Content="{Binding Name}" 
-                                Foreground="Red"
-                                Grid.Column="0"
-                                Margin="20,0,0,0"
-                                HorizontalContentAlignment="Left"
-                                FontFamily="Montserrat"
-                                FontSize="16"/>
+                               Foreground="Red"
+                               Grid.Column="0"
+                               Margin="20,0,0,0"
+                               HorizontalContentAlignment="Left"
+                               Style="{StaticResource columValues}"/>
 
                         <Label Content="{Binding Symbol}"
-                                Foreground="Green"
-                                Grid.Column="1"
-                                Margin="0,0"
-                                FontFamily="Montserrat"
-                                HorizontalContentAlignment="Left"
-                                FontSize="14"/>
+                               Foreground="Green"
+                               Grid.Column="1"
+                               Margin="0,0"
+                               HorizontalContentAlignment="Left"
+                               Style="{StaticResource columValues}"/>
 
                         <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}"
-                                Foreground="Black"
-                                Grid.Column="2"
-                                FontSize="14"
-                                FontFamily="Montserrat"
-                                HorizontalContentAlignment="Center"/>
+                               Foreground="Black"
+                               Grid.Column="2"
+                               HorizontalContentAlignment="Center"
+                               Style="{StaticResource columValues}"/>
 
                         <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}"
-                                Foreground="Green"
-                                Grid.Column="3"
-                                Margin="0,0"
-                                FontFamily="Montserrat"
-                                FontSize="14"                           
-                                HorizontalContentAlignment="Right"/>
+                               Foreground="Green"
+                               Grid.Column="3"
+                               Margin="0,0"                      
+                               HorizontalContentAlignment="Right"
+                               Style="{StaticResource columValues}"/>
 
                     </Grid>
                     

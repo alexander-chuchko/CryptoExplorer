@@ -37,12 +37,6 @@
                                    Source="/images/ic_search.png"
                                    x:Name="imageButton"
                                    MouseLeftButtonDown="OnClickImage">
-                                <!-- 
-                                <Image.Source>
-                                    <BitmapImage DecodePixelWidth="300" 
-                                                 UriSource="{Binding ImagePath}" />
-                                </Image.Source>-->
-                                <!--SearchText   /images/ic_search.png-->
                             </Image>
 
                         </Grid>
