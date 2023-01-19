@@ -17,6 +17,9 @@ namespace CryptoExplorer.Models
         [JsonProperty("name")]
         public string? Name { get; set; }
 
+        [JsonProperty("supply")]
+        public string? Supply { get; set; }
+
         [JsonProperty("maxSupply")]
         public string? MaxSupply { get; set; }
 
