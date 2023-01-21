@@ -32,7 +32,7 @@ namespace CryptoExplorer
             _container = container;
             _cryptocurrencyService = cryptocurrencyService;
 
-            OnLoadedCommand = new DelegateCommand(OnLoaded);
+            //OnLoadedCommand = new DelegateCommand(OnLoaded);
 
         }
 
@@ -65,6 +65,9 @@ namespace CryptoExplorer
 
         private ICommand _NavigateCurrencyDetailsPageCommand;
         public ICommand NavigateCurrencyDetailsPageCommand => _NavigateCurrencyDetailsPageCommand ?? (_NavigateCurrencyDetailsPageCommand = new DelegateCommand<object>(OnNavigateToCurrencyDetailsPage));
+
+        private ICommand _NavigateMainPageCommand;
+        public ICommand NavigateMainPageCommand => _NavigateMainPageCommand ?? (_NavigateMainPageCommand = new DelegateCommand<object>(OnNavigateToCurrencyDetailsPage));
 
         private ICommand _BackTapCommand;
         public ICommand BackTapCommand => _BackTapCommand ?? (_BackTapCommand = new DelegateCommand<object>(OnNavigateToCurrencyDetailsPage));
