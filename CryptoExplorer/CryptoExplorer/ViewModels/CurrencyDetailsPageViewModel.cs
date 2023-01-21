@@ -186,7 +186,6 @@ namespace CryptoExplorer.ViewModels
                 valueString = string.Concat(parametr.Substring(0, indexSymbol + Constants.CHARACTERS), addedString);
             }    
             
-
             return valueString;
         }
 
