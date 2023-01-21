@@ -12,7 +12,7 @@ namespace CryptoExplorer.Converters
         {
             string? valueString = value as string;
 
-            if (!string.IsNullOrEmpty(valueString))
+            if (!string.IsNullOrEmpty(valueString) && valueString != "-")
             {
                 valueString = valueString.Substring(0, valueString.LastIndexOf('.') + 3);
             }

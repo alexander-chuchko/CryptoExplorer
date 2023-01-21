@@ -54,7 +54,8 @@ namespace CryptoExplorer.Services.Cryptocurrency
 
             try
             {
-                HttpResponseMessage response = await _client.GetAsync($"{id}{WEB_API_CURRENCIES}{Constants.LIMIT_MARKETS}");
+                //api.coincap.io/v2/assets/bitcoin/markets?limit=10
+                HttpResponseMessage response = await _client.GetAsync($"assets/{id}{WEB_API_MARKETS}{Constants.LIMIT_MARKETS}");
 
                 if (response.EnsureSuccessStatusCode().IsSuccessStatusCode && response.StatusCode == HttpStatusCode.OK)
                 {

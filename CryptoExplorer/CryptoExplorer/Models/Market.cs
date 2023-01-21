@@ -16,7 +16,7 @@ namespace CryptoExplorer.Models
         public string? QuoteId { get; set; }
 
         [JsonProperty("baseSymbol")]
-        public string? baseSymbol { get; set; }
+        public string? BaseSymbol { get; set; }
 
         [JsonProperty("quoteSymbol")]
         public string? QuoteSymbol { get; set; }

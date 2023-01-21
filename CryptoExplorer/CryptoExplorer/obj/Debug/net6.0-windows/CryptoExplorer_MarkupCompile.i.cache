@@ -1,0 +1,20 @@
+﻿CryptoExplorer
+1.0.0.0
+
+winexe
+C#
+.cs
+E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\obj\Debug\net6.0-windows\
+CryptoExplorer
+none
+false
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\App.xaml
+7-2122253535
+
+23-1763901845
+201-111599273
+Controls\CustomSearchBar.xaml;Controls\CustomTextBlock.xaml;MainWindow.xaml;Styles\DarkTheme.xaml;Styles\LightTheme.xaml;Views\CurrencyDetailsPage.xaml;Views\MainPage.xaml;
+
+False
+

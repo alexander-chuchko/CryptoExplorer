@@ -1,9 +1,12 @@
 ﻿using CryptoExplorer.Models;
+using CryptoExplorer.Services.Cryptocurrency;
 using CryptoExplorer.Services.SettingsManager;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
 
 namespace CryptoExplorer.ViewModels
@@ -14,12 +17,14 @@ namespace CryptoExplorer.ViewModels
 
         private IRegionNavigationService _navigationService;
         private readonly ISettingsManager _settingsManager;
+        private readonly ICryptocurrencyService _cryptocurrencyService;
 
         #endregion
 
-        public CurrencyDetailsPageViewModel(ISettingsManager settingsManager)
+        public CurrencyDetailsPageViewModel(ISettingsManager settingsManager, ICryptocurrencyService cryptocurrencyService)
         {
             _settingsManager = settingsManager;
+            _cryptocurrencyService = cryptocurrencyService; 
         }
 
 
@@ -30,6 +35,13 @@ namespace CryptoExplorer.ViewModels
         {
             get { return _currency; }
             set { SetProperty(ref _currency, value); }
+        }
+
+        private IEnumerable<Market>? _marketList;
+        public IEnumerable<Market>? MarketList
+        {
+            get { return _marketList; }
+            set { SetProperty(ref _marketList, value); }
         }
 
         private string? _name;
@@ -132,7 +144,7 @@ namespace CryptoExplorer.ViewModels
             _settingsManager.IsDarkTheme = true;
         }
 
-        private void InitializationData(Currency currency)
+        private async void InitializationData(Currency currency)
         {
             if (currency is not null)
             {
@@ -145,20 +157,52 @@ namespace CryptoExplorer.ViewModels
                 MarketCapUsd = OnReplacingValue(currency.MarketCapUsd);
                 ChangePercent24Hr = OnReplacingValue(currency.ChangePercent24Hr);
                 Мwap24Hr = OnReplacingValue(currency.Vwap24Hr);
-                Explorer = OnReplacingValue(currency.Explorer);
+
+                Explorer = ReduceString(OnReplacingValue(currency.Explorer));
             }
+
+            if (!string.IsNullOrEmpty(currency?.Name))
+            {
+                
+                var markets = await _cryptocurrencyService.GetMarketsAsync(currency?.CurrencyId);
+                
+                if (markets is not null && markets.Count() > 0) 
+                {
+                    MarketList = markets;
+                }
+            }
+        }
+
+        private string ReduceString(string parametr)
+        {
+            string valueString = parametr;
+
+            string addedString = "...";
+            var indexSymbol = parametr.IndexOf('.');
+            var itemSymbols = parametr.Length - indexSymbol;
+                
+            if (itemSymbols > Constants.CHARACTERS)
+            {
+                valueString = string.Concat(parametr.Substring(0, indexSymbol + Constants.CHARACTERS), addedString);
+            }    
+            
+
+            return valueString;
         }
 
         private string OnReplacingValue(string ? parametr)
         {
-            return !string.IsNullOrEmpty(parametr) ? parametr : "-";
+            return !string.IsNullOrEmpty(parametr) ?
+                parametr :
+                "-";
         }
+
 
         private void OnFollowTheLink(object parametr)
         {
             if (parametr is string url)
             {
-                System.Diagnostics.Process.Start(new ProcessStartInfo
+                Process.Start(new ProcessStartInfo
                 {
                     FileName = url,
                     UseShellExecute = true

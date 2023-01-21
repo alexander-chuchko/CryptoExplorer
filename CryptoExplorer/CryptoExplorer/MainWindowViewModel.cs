@@ -82,7 +82,7 @@ namespace CryptoExplorer
             {
                 var getedCollection = await _cryptocurrencyService.GetTopCurrenciesAsync();//.GetAwaiter().GetResult();
 
-                if (getedCollection.Count() != 0)
+                if (getedCollection is not null && getedCollection.Count() != 0)
                 {
                     СurrencyList = getedCollection.Take(3);
                 }

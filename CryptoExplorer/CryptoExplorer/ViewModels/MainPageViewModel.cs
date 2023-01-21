@@ -15,7 +15,7 @@ namespace CryptoExplorer.ViewModels
     {
         #region   ---    PrivateFields   ---
 
-        private readonly ICryptocurrencyService? _cryptocurrencyService;
+        private readonly ICryptocurrencyService _cryptocurrencyService;
         private readonly IRegionManager _regionManager;
 
         #endregion
@@ -71,9 +71,10 @@ namespace CryptoExplorer.ViewModels
 
         private async void OnGetCurrencies()
         {
-            if (_cryptocurrencyService is not null)
+            CurrencyAllList = await _cryptocurrencyService.GetTopCurrenciesAsync();
+            
+            if (CurrencyAllList is not null && CurrencyAllList.Count() > 0) 
             {
-                CurrencyAllList = await _cryptocurrencyService.GetTopCurrenciesAsync();
                 СurrencyList = CurrencyAllList.Take(10);
             }
         }
