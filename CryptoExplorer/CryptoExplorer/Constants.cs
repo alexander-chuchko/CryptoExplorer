@@ -24,6 +24,7 @@ namespace CryptoExplorer
 
         //Number of displayed characters
         public const int CHARACTERS = 15;
+        public const int NUMBER_OF_DISPLAYED_CURRENCIES = 20;
 
     }
 }

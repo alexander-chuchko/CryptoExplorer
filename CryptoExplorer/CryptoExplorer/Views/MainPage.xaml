@@ -8,14 +8,18 @@
              xmlns:customSearchBar="clr-namespace:CryptoExplorer.Controls"
              d:DesignHeight="450"
              d:DesignWidth="800"
-             Background="#f8f5f5">
+             Background="#fcfcfc">
+    <!--fcfcfc
+    #f8f5f5
+    
+    -->
     
     <UserControl.Resources>
         
         <Style TargetType="Label" x:Key="columName">
-            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Montserrat"/>
-            <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="#3D4E61"/>
         </Style>
 
@@ -30,19 +34,49 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!--Your assets. Your choice. Our technologies.-->
+        <!--Title of market -->
+
+        <Label Content="Binance market"
+               Grid.Column="0"
+               Grid.Row="0"
+               FontSize="22"
+               FontWeight="Bold"
+               HorizontalContentAlignment="Left"
+               Foreground="#1E242B"
+               FontFamily="Montserrat"/>
+
+        <!--Title of market -->
+
+        <Label Content="Your assets. Your choice. Our technologies."
+               Grid.Column="0"
+               Grid.Row="1"
+               FontSize="18"
+               Foreground="#1E242B"
+               FontFamily="Montserrat"/>
+        
         <!--Search Bar-->
+        
+        <customSearchBar:CustomSearchBar SearchText="{Binding SearchText, Mode=TwoWay}" 
+                                         Grid.Row="2" 
+                                         Grid.Column="0"/>
 
-        <customSearchBar:CustomSearchBar SearchText="{Binding SearchText, Mode=TwoWay}"/>
+        <!--Column name-->
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="3"
+              Background="#f8f5f5">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.2*" />
                 <ColumnDefinition Width="0.2*"/>
@@ -50,7 +84,7 @@
                 <ColumnDefinition Width="0.2*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Content="Name" 
+            <Label Content="Symbol" 
                    Margin="20,0,0,0"
                    Grid.Column="0"
                    HorizontalContentAlignment="Left"
@@ -59,7 +93,7 @@
             <Label Content="Price" 
                    Grid.Column="1"
                    Margin="20,0"
-                   HorizontalContentAlignment="Left"
+                   HorizontalContentAlignment="left"
                    Style="{StaticResource columName}"/>
             
             <Label Content="Volume 24 h"                   
@@ -75,87 +109,111 @@
 
         </Grid>
 
+        <!--List of currencies-->
+        
         <ListView Name="currenciesList" 
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   Height="auto"
+                  BorderThickness="0"
                   VerticalContentAlignment="Stretch"
                   HorizontalAlignment="Stretch"
-                  Background="#F1F3FD"
+                  Background="Transparent"
                   ItemsSource="{Binding СurrencyList}"
                   SelectedItem="{Binding Currency}"
-                  Grid.Row="2">
+                  Grid.Column="0"
+                  Grid.Row="4">
             
             <ListView.Resources>
+                
                 <local:NumberConverter x:Key="numberConverter"/>
                 <Style TargetType="GridViewColumnHeader">
                     <Setter Property="Visibility" Value="Hidden" />
                 </Style>
+                
             </ListView.Resources>
             
             <ListView.ItemContainerStyle>
                 
                 <Style TargetType="ListViewItem">
-                    <Setter Property="Background" Value="#F1F3FD" />
-                    <Setter Property="BorderBrush" Value="#F1F3FD" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
                     <Setter Property="BorderThickness" Value="1" />
-                    <!--<Setter Property="Focusable" Value="False" /> -->
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     <Setter Property="VerticalContentAlignment"  Value="Stretch"/>
                     <Style.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Foreground" Value="#F1F3FD" />
+                            <Setter Property="Foreground" Value="Red" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
+                
             </ListView.ItemContainerStyle>
             
             <ListView.ItemTemplate>
                 
                 <DataTemplate>
-                    
+
                     <Grid HorizontalAlignment="Stretch" 
                           VerticalAlignment="Stretch">
-                        
+
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="5"/>
                         </Grid.RowDefinitions>
-                        
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="0.2*"/>
                         </Grid.ColumnDefinitions>
-                        
-                        <Label Content="{Binding Name}" 
-                               Foreground="Red"
-                               Grid.Column="0"
-                               Margin="20,0,0,0"
-                               HorizontalContentAlignment="Left"
-                               Style="{StaticResource columValues}"/>
 
                         <Label Content="{Binding Symbol}"
-                               Foreground="Green"
+                               Foreground="#1E242B"
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               Margin="20,0"
+                               HorizontalContentAlignment="Left"
+                               VerticalContentAlignment="Center"
+                               Style="{StaticResource columValues}"/>
+
+                        <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}" 
+                               Foreground="#3D4E61"
                                Grid.Column="1"
+                               Grid.Row="0"
                                Margin="0,0"
                                HorizontalContentAlignment="Left"
+                               VerticalContentAlignment="Center"
                                Style="{StaticResource columValues}"/>
 
-                        <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}"
-                               Foreground="Black"
+
+                        <Label Content="{Binding VolumeUsd24Hr, Converter={StaticResource numberConverter}}"
+                               Foreground="#1E242B"
                                Grid.Column="2"
+                               Grid.Row="0"
                                HorizontalContentAlignment="Center"
+                                                              VerticalContentAlignment="Center"
                                Style="{StaticResource columValues}"/>
 
-                        <Label Content="{Binding PriceUsd, Converter={StaticResource numberConverter}}"
-                               Foreground="Green"
+                        <Label Content="{Binding Supply, Converter={StaticResource numberConverter}}"
+                               Foreground="#1E242B"
                                Grid.Column="3"
+                               Grid.Row="0"
                                Margin="0,0"                      
                                HorizontalContentAlignment="Right"
+                                                              VerticalContentAlignment="Center"
                                Style="{StaticResource columValues}"/>
 
+                        <Separator Background="#E5E5E5"  
+                                   Height="2"
+                                   Grid.Row="1"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="4"
+                                   VerticalContentAlignment="Bottom"/>
+
                     </Grid>
-                    
+
                 </DataTemplate>
 
             </ListView.ItemTemplate>

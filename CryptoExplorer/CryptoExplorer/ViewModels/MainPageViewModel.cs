@@ -75,7 +75,7 @@ namespace CryptoExplorer.ViewModels
             
             if (CurrencyAllList is not null && CurrencyAllList.Count() > 0) 
             {
-                СurrencyList = CurrencyAllList.Take(10);
+                СurrencyList = CurrencyAllList.Take(Constants.NUMBER_OF_DISPLAYED_CURRENCIES);
             }
         }
 
@@ -96,7 +96,7 @@ namespace CryptoExplorer.ViewModels
             {
                 if (string.IsNullOrEmpty(SearchText))
                 {
-                    СurrencyList = CurrencyAllList?.Take(10);
+                    СurrencyList = CurrencyAllList?.Take(Constants.NUMBER_OF_DISPLAYED_CURRENCIES);
                 }
                 else
                 {
