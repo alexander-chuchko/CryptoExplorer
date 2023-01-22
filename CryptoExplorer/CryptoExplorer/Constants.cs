@@ -26,5 +26,10 @@ namespace CryptoExplorer
         public const int CHARACTERS = 15;
         public const int NUMBER_OF_DISPLAYED_CURRENCIES = 20;
 
+        //Name of menu items
+        public const string MAIN_ITEM = "Main";
+        public const string DETAILS_ITEM = "Details";
+        public const string CONVERTER_ITEM = "Converter";
+        public const string SETTINGS_ITEM = "Settings";
     }
 }
