@@ -7,7 +7,6 @@ using Prism.Commands;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -76,8 +75,8 @@ namespace CryptoExplorer
         private ICommand _NavigateToPageCommand;
         public ICommand NavigateToPageCommand => _NavigateToPageCommand ?? (_NavigateToPageCommand = new DelegateCommand<object>(OnNavigateToPage));
         
-        private ICommand _NavigateMainPageCommand;
-        public ICommand NavigateMainPageCommand => _NavigateMainPageCommand ?? (_NavigateMainPageCommand = new DelegateCommand(OnNavigateMainPage));
+        private ICommand _NavigateMainToPageCommand;
+        public ICommand NavigateMainPageToCommand => _NavigateMainToPageCommand ?? (_NavigateMainToPageCommand = new DelegateCommand(OnNavigateToMainPage));
 
         public bool KeepAlive =>true;
 
@@ -105,28 +104,28 @@ namespace CryptoExplorer
             {
               new UserMenuViewModel()
               {
-                  Name ="Main", 
+                  Name = Constants.MAIN_ITEM, 
                   TextBackground = "#f8f5f5",
                   TextForeground = "#ff4064", 
                   ImageSource = "/Images/home_light.png"
               },
               new UserMenuViewModel()
               {
-                  Name ="Details", 
+                  Name = Constants.DETAILS_ITEM, 
                   TextBackground =  Color.Transparent.ToString(), 
                   TextForeground = "#596EFB", 
                   ImageSource = "/Images/info_light.png"
               },
               new UserMenuViewModel()
               {
-                  Name ="Converter",
+                  Name = Constants.CONVERTER_ITEM,
                   TextBackground = Color.Transparent.ToString(),
                   TextForeground = "#596EFB",
                   ImageSource = "/Images/convert_light.png"
               },
               new UserMenuViewModel()
               {
-                  Name ="Settings", 
+                  Name = Constants.SETTINGS_ITEM, 
                   TextBackground =  Color.Transparent.ToString(),
                   TextForeground = "#596EFB",
                   ImageSource = "/Images/settings_light.png"
@@ -136,7 +135,7 @@ namespace CryptoExplorer
             MenuList = menu;
         }
 
-        public void OnNavigateMainPage()
+        public void OnNavigateToMainPage()
         {
             //IRegion mainRegion = _regionManager.Regions["ContentRegion"];
             //var view = _container.Resolve<MainPage>();
@@ -145,7 +144,6 @@ namespace CryptoExplorer
             OnGetCurrencies();
 
             _regionManager.RequestNavigate("ContentRegion", (nameof(MainPage)));
-
         }
 
         private void OnNavigateToPage(object parametr)
@@ -156,21 +154,19 @@ namespace CryptoExplorer
             {
                 switch (namePage)
                 {
-                    case nameof(CurrencyDetailsPage):
-                        _regionManager.RequestNavigate("ContentRegion", (nameof(CurrencyDetailsPage)));
+                    case Constants.MAIN_ITEM:
+                        //var singleView = _regionManager.Regions["ContentRegion"].ActiveViews.FirstOrDefault();
+                        _regionManager.RequestNavigate("ContentRegion", (nameof(MainPage)));
                         break;
 
-                    case nameof(MainPage):
-                        var singleView = _regionManager.Regions["ContentRegion"].ActiveViews.FirstOrDefault();
-                        CreatingMenuItems();
-                        OnGetCurrencies();
-                        _regionManager.RequestNavigate("ContentRegion", (nameof(MainPage)));
+                    case Constants.DETAILS_ITEM:
+                        _regionManager.RequestNavigate("ContentRegion", (nameof(CurrencyDetailsPage)));
                         break;
                 }
             }
         }
 
-        private void ChangeItemColor(UserMenuViewModel? userMenuViewModel)
+        private void ChangeItemColor()
         {
             var paragraph = MenuList?.Where(x => (x.TextBackground == "#f8f5f5" && x.TextForeground == "#ff4064"))?.FirstOrDefault();
                 
@@ -184,6 +180,7 @@ namespace CryptoExplorer
         #endregion
 
         #region     --- Override ---
+
         protected override void OnPropertyChanged(PropertyChangedEventArgs args)
         {
             base.OnPropertyChanged(args);
@@ -198,10 +195,10 @@ namespace CryptoExplorer
             {
                 if (SelectedParagraph is not null)
                 {
-                    ChangeItemColor(SelectedParagraph);
-
+                    ChangeItemColor();
                     SelectedParagraph.TextBackground = "#f8f5f5";
                     SelectedParagraph.TextForeground = "#ff4064";
+                    OnNavigateToPage(SelectedParagraph.Name);
                 }
             }
         }

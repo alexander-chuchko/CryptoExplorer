@@ -1,6 +1,4 @@
 ﻿
-using CryptoExplorer.Views;
-
 namespace CryptoExplorer
 {
     public class Constants

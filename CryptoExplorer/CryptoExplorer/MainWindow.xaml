@@ -72,8 +72,7 @@
     
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding NavigateToPageCommand}" 
-                                   CommandParameter="{x:Static constants:Constants.MAIN_PAGE}"/>
+            <i:InvokeCommandAction Command="{Binding NavigateMainPageToCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
