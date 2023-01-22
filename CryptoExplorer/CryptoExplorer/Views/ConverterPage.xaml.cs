@@ -15,9 +15,9 @@ using System.Windows.Shapes;
 
 namespace CryptoExplorer.Views
 {
-    public partial class Converter : UserControl
+    public partial class ConverterPage : UserControl
     {
-        public Converter()
+        public ConverterPage()
         {
             InitializeComponent();
         }

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\App.xaml
-81700228863
+8-1758555932
 
-25280230247
+25-1826030433
 201-111599273
-Controls\CustomSearchBar.xaml;Controls\CustomTextBlock.xaml;MainWindow.xaml;Styles\DarkTheme.xaml;Styles\LightTheme.xaml;Views\Converter.xaml;Views\CurrencyDetailsPage.xaml;Views\MainPage.xaml;
+Controls\CustomSearchBar.xaml;Controls\CustomTextBlock.xaml;MainWindow.xaml;Styles\DarkTheme.xaml;Styles\LightTheme.xaml;Views\ConverterPage.xaml;Views\CurrencyDetailsPage.xaml;Views\MainPage.xaml;
 
-True
+False
 
