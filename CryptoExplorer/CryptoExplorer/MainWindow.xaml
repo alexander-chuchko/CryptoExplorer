@@ -11,6 +11,44 @@
         Title="CryptoExplorer"
         Width="850"
         Height="650">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock"  x:Key="menuName">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="Foreground" Value="#596EFB"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Margin" Value="5,0"/>
+            
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#ff4064"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
+        <Style TargetType="StackPanel" x:Key="menuStackPanel">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#f8f5f5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="Image" x:Key="menuImage">
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+
+
+
+
+    </Window.Resources>
     
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -21,66 +59,121 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="280"/>
         </Grid.ColumnDefinitions>
-        
-        <StackPanel Orientation="Vertical"
-                    Background="#E5E5E5"
-                    Grid.Column="0"
-                    Margin="5">
+
+        <Grid Background="#fcfcfc"
+              Grid.Column="0"
+              Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+
+            </Grid.RowDefinitions>
+
+            <Image Grid.Column="0"
+                   Grid.Row="0"
+                   Margin="5">
+                <Image.Source>
+                    <BitmapImage UriSource="/Images/dashboard_light.png"/>
+                </Image.Source>
+            </Image>
 
             <TextBlock Text="DashBoard"
-                           Foreground="#1E242B"
-                           FontWeight="Bold"
-                           FontFamily="Montserrat"
-                           FontSize="20"
-                           VerticalAlignment="Center" 
-                           Margin="10,20">
-                
-
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       Foreground="#596EFB"
+                       FontWeight="Bold"
+                       FontFamily="Montserrat"
+                       FontSize="18"
+                       VerticalAlignment="Center" 
+                       Margin="10,20">
             </TextBlock>
 
-            <TextBlock Text="Main"
-                           Foreground="#3D4E61"
-                           FontWeight="DemiBold"
-                           FontFamily="Montserrat"
-                           FontSize="18"
-                           VerticalAlignment="Center"
-                           Margin="10,5">
-                                <i:Interaction.Triggers>
+            <Separator Background="#E5E5E5" 
+                       Height="1"
+                       Grid.Row="1"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Stretch"
+                       Grid.ColumnSpan="2"/>
+
+            <StackPanel Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal" Style="{StaticResource menuStackPanel}">
+
+                <Image Source="/Images/home_light.png"
+                       Style="{StaticResource menuImage}"/>
+
+
+
+                <TextBlock Text="Main"
+                       Grid.Column="1"
+                       Grid.Row="2"
+                       Style="{StaticResource menuName}">
+                
+                <i:Interaction.Triggers>           
                     <i:EventTrigger EventName="MouseLeftButtonDown">
                         <prism:InvokeCommandAction Command="{Binding NavigateToPageCommand}"
                                                    CommandParameter="{x:Static constants:Constants.MAIN_PAGE}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                
-            </TextBlock>
 
-            <TextBlock Text="Details"
-                           Foreground="#3D4E61"
-                           FontWeight="DemiBold"                            
-                           FontFamily="Montserrat"
-                           FontSize="18"
-                           VerticalAlignment="Center"
-                           Margin="10,5"/>
+                </TextBlock>
 
-            <TextBlock Text="Сonvert"
-                           Foreground="#3D4E61"
-                           FontWeight="DemiBold"
-                           FontFamily="Montserrat"
-                           FontSize="18"
-                           VerticalAlignment="Center"
-                           Margin="10,5"/>
+            </StackPanel>
 
-            <TextBlock Text="Settings"
-                           Foreground="#3D4E61"
-                           FontSize="18"
-                           FontFamily="Montserrat"
-                           FontWeight="DemiBold"
-                           VerticalAlignment="Center"
-                           Margin="10,5">
+            <StackPanel Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal" Style="{StaticResource menuStackPanel}">
+
+                <Image Source="/Images/info_light.png"
+                       Style="{StaticResource menuImage}"/>
+
+                <TextBlock Text="Details"
+                           Style="{StaticResource menuName}"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="4"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal" Style="{StaticResource menuStackPanel}">
+
+                <Image 
+                   Source="/Images/convert_light.png"
+                   Style="{StaticResource menuImage}">
+
+                </Image>
+
+                <TextBlock Text="Converter"
+                           Style="{StaticResource menuName}"/>
+
+            </StackPanel>
+            <StackPanel Grid.Row="5"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal" Style="{StaticResource menuStackPanel}">
+                <Image Source="/Images/settings_light.png"
+                       Style="{StaticResource menuImage}">
+
+                </Image>
+
+                <TextBlock Text="Settings"
+                       Style="{StaticResource menuName}">
                     
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseLeftButtonDown">
@@ -88,13 +181,13 @@
                                                    CommandParameter="{x:Static constants:Constants.CURRENCY_DETAILS_PAGE}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-            </TextBlock>
-        </StackPanel>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
 
         <ContentControl Grid.Column="1"
                         prism:RegionManager.RegionName="ContentRegion"
                         Margin="5" />
-
 
         <StackPanel Grid.Column="2"
                     VerticalAlignment="Stretch"

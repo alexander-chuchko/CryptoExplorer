@@ -8,13 +8,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\convert_dark.png" />
+    <None Remove="Images\convert_light.png" />
+    <None Remove="Images\dashboard_dark.png" />
+    <None Remove="Images\dashboard_light.png" />
+    <None Remove="Images\home_dark.png" />
+    <None Remove="Images\home_light.png" />
     <None Remove="Images\ic_clear.png" />
     <None Remove="Images\ic_search.png" />
+    <None Remove="Images\info_dark.png" />
+    <None Remove="Images\info_light.png" />
+    <None Remove="Images\settings_dark.png" />
+    <None Remove="Images\settings_light.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\convert_dark.png" />
+    <Resource Include="Images\convert_light.png" />
+    <Resource Include="Images\dashboard_dark.png" />
+    <Resource Include="Images\dashboard_light.png" />
+    <Resource Include="Images\home_dark.png" />
+    <Resource Include="Images\home_light.png" />
     <Resource Include="Images\ic_clear.png" />
     <Resource Include="Images\ic_search.png" />
+    <Resource Include="Images\info_dark.png" />
+    <Resource Include="Images\info_light.png" />
+    <Resource Include="Images\settings_dark.png" />
+    <Resource Include="Images\settings_light.png" />
   </ItemGroup>
 
   <ItemGroup>
