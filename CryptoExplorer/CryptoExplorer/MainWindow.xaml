@@ -16,7 +16,7 @@
         <Style TargetType="TextBlock"  x:Key="menuName">
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="FontFamily" Value="Montserrat"/>
-            <Setter Property="Foreground" Value="#596EFB"/>
+            <!--<Setter Property="Foreground" Value="#596EFB"/>-->
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
             <Setter Property="Margin" Value="5,0"/>
@@ -32,7 +32,8 @@
         <Style TargetType="StackPanel" x:Key="menuStackPanel">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#f8f5f5"/>
+                    <!--                    <Setter Property="Background" Value="#f8f5f5"/> -->
+                    <Setter Property="Background" Value="Red"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -43,6 +44,25 @@
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="Width" Value="25"/>
             <Setter Property="Height" Value="25"/>
+        </Style>
+
+        <Style x:Key="listBoxItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="_Border"
+                                Padding="2"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"  Value="true">
+                                <Setter TargetName="_Border" Property="Background" Value="#f8f5f5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
 
@@ -74,11 +94,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="10"/>
+                <!--                <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/> -->
+
+                <RowDefinition Height="*"/>
 
             </Grid.RowDefinitions>
 
@@ -109,6 +131,68 @@
                        HorizontalAlignment="Stretch"
                        Grid.ColumnSpan="2"/>
 
+            <Grid Grid.Column="0"
+                  Grid.Row="3"
+                  Grid.ColumnSpan="2">
+                
+                <ListBox ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         Width="auto"
+                         Height="auto"
+                         ItemsSource="{Binding MenuList}"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         ItemContainerStyle="{DynamicResource listBoxItemStyle}"
+                         SelectedItem="{Binding SelectedParagraph}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        Background="{Binding TextBackground}"
+                                        Style="{StaticResource menuStackPanel}">
+
+                                <Image Source="{Binding ImageSource}"
+                                       Style="{StaticResource menuImage}"/>
+
+                                <TextBlock Text="{Binding Name}"
+                                           Foreground="{Binding TextForeground}"
+                                           Style="{StaticResource menuName}">
+
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    
+                </ListBox>
+                <!-- 
+                <ItemsControl ItemsSource="{Binding MenuList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        Background="{Binding TextBackground}"
+                                        Style="{StaticResource menuStackPanel}">
+
+                                <Image Source="{Binding ImageSource}"
+                                       Style="{StaticResource menuImage}"/>
+
+                                <TextBlock Text="{Binding Name}"
+                                           Foreground="{Binding TextForeground}"
+                                           Style="{StaticResource menuName}">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <prism:InvokeCommandAction Command="{Binding NavigateToPageCommand}"
+                                                                       CommandParameter="{x:Static constants:Constants.MAIN_PAGE}"/>
+                                            </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                -->
+            </Grid>
+            
+            
+            <!-- 
             <StackPanel Grid.Row="2"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
@@ -183,6 +267,8 @@
                 </i:Interaction.Triggers>
                 </TextBlock>
             </StackPanel>
+            
+ -->
         </Grid>
 
         <ContentControl Grid.Column="1"

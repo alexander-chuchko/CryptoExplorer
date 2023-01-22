@@ -1,5 +1,6 @@
 ﻿
 using CryptoExplorer.Models;
+using CryptoExplorer.Models.Menu;
 using CryptoExplorer.Services.Cryptocurrency;
 using CryptoExplorer.Views;
 using Prism.Commands;
@@ -9,8 +10,8 @@ using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
-using System.Threading;
 using System.Windows.Input;
 
 namespace CryptoExplorer
@@ -23,7 +24,6 @@ namespace CryptoExplorer
         private readonly IContainerExtension _container;
         private readonly ICryptocurrencyService _cryptocurrencyService;
 
-
         #endregion
 
         public MainWindowViewModel(IRegionManager regionManager, IContainerExtension container, ICryptocurrencyService cryptocurrencyService)
@@ -31,9 +31,6 @@ namespace CryptoExplorer
             _regionManager = regionManager;
             _container = container;
             _cryptocurrencyService = cryptocurrencyService;
-
-            //OnLoadedCommand = new DelegateCommand(OnLoaded);
-
         }
 
         #region   ---   PublicProperties   ---
@@ -60,22 +57,29 @@ namespace CryptoExplorer
             set { SetProperty(ref _currencyList, value); }
         }
 
+        private IEnumerable<UserMenuViewModel>? _menuList;
+        public IEnumerable<UserMenuViewModel>? MenuList
+        {
+            get { return _menuList; }
+            set { SetProperty(ref _menuList, value); }
+        }
+
+        private UserMenuViewModel? _selectedParagraph;
+        public UserMenuViewModel? SelectedParagraph
+        {
+            get { return _selectedParagraph; }
+            set { SetProperty(ref _selectedParagraph, value); }
+        }
 
         public ICommand OnLoadedCommand { get; }
 
         private ICommand _NavigateToPageCommand;
         public ICommand NavigateToPageCommand => _NavigateToPageCommand ?? (_NavigateToPageCommand = new DelegateCommand<object>(OnNavigateToPage));
-
-        //public bool KeepAlive => throw new NotImplementedException();
-
         
-         private ICommand _NavigateMainPageCommand;
-         public ICommand NavigateMainPageCommand => _NavigateMainPageCommand ?? (_NavigateMainPageCommand = new DelegateCommand(OnNavigateMainPage));
-        /*
-         private ICommand _BackTapCommand;
-         public ICommand BackTapCommand => _BackTapCommand ?? (_BackTapCommand = new DelegateCommand<object>(OnNavigateToPage));
-        */
-         public bool KeepAlive =>true;
+        private ICommand _NavigateMainPageCommand;
+        public ICommand NavigateMainPageCommand => _NavigateMainPageCommand ?? (_NavigateMainPageCommand = new DelegateCommand(OnNavigateMainPage));
+
+        public bool KeepAlive =>true;
 
         #endregion
 
@@ -94,11 +98,50 @@ namespace CryptoExplorer
                 }
             }
         }
+
+        private void CreatingMenuItems()
+        {
+            var menu = new List<UserMenuViewModel>()
+            {
+              new UserMenuViewModel()
+              {
+                  Name ="Main", 
+                  TextBackground = "#f8f5f5",
+                  TextForeground = "#ff4064", 
+                  ImageSource = "/Images/home_light.png"
+              },
+              new UserMenuViewModel()
+              {
+                  Name ="Details", 
+                  TextBackground =  Color.Transparent.ToString(), 
+                  TextForeground = "#596EFB", 
+                  ImageSource = "/Images/info_light.png"
+              },
+              new UserMenuViewModel()
+              {
+                  Name ="Converter",
+                  TextBackground = Color.Transparent.ToString(),
+                  TextForeground = "#596EFB",
+                  ImageSource = "/Images/convert_light.png"
+              },
+              new UserMenuViewModel()
+              {
+                  Name ="Settings", 
+                  TextBackground =  Color.Transparent.ToString(),
+                  TextForeground = "#596EFB",
+                  ImageSource = "/Images/settings_light.png"
+              },
+            };
+
+            MenuList = menu;
+        }
+
         public void OnNavigateMainPage()
         {
             //IRegion mainRegion = _regionManager.Regions["ContentRegion"];
             //var view = _container.Resolve<MainPage>();
             //mainRegion.Add(view);
+            CreatingMenuItems();
             OnGetCurrencies();
 
             _regionManager.RequestNavigate("ContentRegion", (nameof(MainPage)));
@@ -119,11 +162,22 @@ namespace CryptoExplorer
 
                     case nameof(MainPage):
                         var singleView = _regionManager.Regions["ContentRegion"].ActiveViews.FirstOrDefault();
-                        
+                        CreatingMenuItems();
                         OnGetCurrencies();
                         _regionManager.RequestNavigate("ContentRegion", (nameof(MainPage)));
                         break;
                 }
+            }
+        }
+
+        private void ChangeItemColor(UserMenuViewModel? userMenuViewModel)
+        {
+            var paragraph = MenuList?.Where(x => (x.TextBackground == "#f8f5f5" && x.TextForeground == "#ff4064"))?.FirstOrDefault();
+                
+            if (paragraph is not null)
+            {
+                paragraph.TextForeground = "#596EFB";
+                paragraph.TextBackground = Color.Transparent.ToString();
             }
         }
 
@@ -139,6 +193,16 @@ namespace CryptoExplorer
                 //var navigationParameters = new NavigationParameters();
                 //navigationParameters.Add(nameof(Currency), Currency);
                 //_regionManager.RequestNavigate(Constants.CONTENT_REGION, nameof(CurrencyDetailsPage), navigationParameters);
+            }
+            else if (args.PropertyName == nameof(SelectedParagraph)) 
+            {
+                if (SelectedParagraph is not null)
+                {
+                    ChangeItemColor(SelectedParagraph);
+
+                    SelectedParagraph.TextBackground = "#f8f5f5";
+                    SelectedParagraph.TextForeground = "#ff4064";
+                }
             }
         }
 
