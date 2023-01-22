@@ -14,7 +14,8 @@
     
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding OnLoadedCommand}" />
+            <i:InvokeCommandAction Command="{Binding NavigateToPageCommand}" 
+                                   CommandParameter="{x:Static constants:Constants.MAIN_PAGE}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -36,7 +37,10 @@
                            FontFamily="Montserrat"
                            FontSize="20"
                            VerticalAlignment="Center" 
-                           Margin="10,20"/>
+                           Margin="10,20">
+                
+
+            </TextBlock>
 
             <TextBlock Text="Main"
                            Foreground="#3D4E61"
@@ -44,7 +48,15 @@
                            FontFamily="Montserrat"
                            FontSize="18"
                            VerticalAlignment="Center"
-                           Margin="10,5"/>
+                           Margin="10,5">
+                                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <prism:InvokeCommandAction Command="{Binding NavigateToPageCommand}"
+                                                   CommandParameter="{x:Static constants:Constants.MAIN_PAGE}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                
+            </TextBlock>
 
             <TextBlock Text="Details"
                            Foreground="#3D4E61"

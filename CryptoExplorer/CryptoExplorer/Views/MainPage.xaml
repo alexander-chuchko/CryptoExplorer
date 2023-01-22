@@ -92,8 +92,8 @@
 
             <Label Content="Price" 
                    Grid.Column="1"
-                   Margin="20,0"
-                   HorizontalContentAlignment="left"
+                   Margin="0,0"
+                   HorizontalContentAlignment="Left"
                    Style="{StaticResource columName}"/>
             
             <Label Content="Volume 24 h"                   

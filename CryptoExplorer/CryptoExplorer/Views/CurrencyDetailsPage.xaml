@@ -33,7 +33,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="true">
                                 <Setter TargetName="_Border" Property="Background" Value="Transparent"/>
-                                <Setter Property="Foreground" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="#1E242B"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

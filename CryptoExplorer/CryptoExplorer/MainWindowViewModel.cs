@@ -63,16 +63,19 @@ namespace CryptoExplorer
 
         public ICommand OnLoadedCommand { get; }
 
-        private ICommand _NavigateCurrencyDetailsPageCommand;
-        public ICommand NavigateCurrencyDetailsPageCommand => _NavigateCurrencyDetailsPageCommand ?? (_NavigateCurrencyDetailsPageCommand = new DelegateCommand<object>(OnNavigateToCurrencyDetailsPage));
+        private ICommand _NavigateToPageCommand;
+        public ICommand NavigateToPageCommand => _NavigateToPageCommand ?? (_NavigateToPageCommand = new DelegateCommand<object>(OnNavigateToPage));
 
-        private ICommand _NavigateMainPageCommand;
-        public ICommand NavigateMainPageCommand => _NavigateMainPageCommand ?? (_NavigateMainPageCommand = new DelegateCommand<object>(OnNavigateToCurrencyDetailsPage));
+        //public bool KeepAlive => throw new NotImplementedException();
 
-        private ICommand _BackTapCommand;
-        public ICommand BackTapCommand => _BackTapCommand ?? (_BackTapCommand = new DelegateCommand<object>(OnNavigateToCurrencyDetailsPage));
-
-        public bool KeepAlive =>false;
+        
+         private ICommand _NavigateMainPageCommand;
+         public ICommand NavigateMainPageCommand => _NavigateMainPageCommand ?? (_NavigateMainPageCommand = new DelegateCommand(OnNavigateMainPage));
+        /*
+         private ICommand _BackTapCommand;
+         public ICommand BackTapCommand => _BackTapCommand ?? (_BackTapCommand = new DelegateCommand<object>(OnNavigateToPage));
+        */
+         public bool KeepAlive =>true;
 
         #endregion
 
@@ -91,7 +94,7 @@ namespace CryptoExplorer
                 }
             }
         }
-        public void OnLoaded()
+        public void OnNavigateMainPage()
         {
             //IRegion mainRegion = _regionManager.Regions["ContentRegion"];
             //var view = _container.Resolve<MainPage>();
@@ -102,7 +105,7 @@ namespace CryptoExplorer
 
         }
 
-        private void OnNavigateToCurrencyDetailsPage(object parametr)
+        private void OnNavigateToPage(object parametr)
         {
             var namePage = parametr as string;
             
@@ -112,6 +115,13 @@ namespace CryptoExplorer
                 {
                     case nameof(CurrencyDetailsPage):
                         _regionManager.RequestNavigate("ContentRegion", (nameof(CurrencyDetailsPage)));
+                        break;
+
+                    case nameof(MainPage):
+                        var singleView = _regionManager.Regions["ContentRegion"].ActiveViews.FirstOrDefault();
+                        
+                        OnGetCurrencies();
+                        _regionManager.RequestNavigate("ContentRegion", (nameof(MainPage)));
                         break;
                 }
             }
