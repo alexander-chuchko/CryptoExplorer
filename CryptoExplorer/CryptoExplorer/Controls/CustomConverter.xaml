@@ -23,25 +23,29 @@
                 </Grid.ColumnDefinitions>
 
                 <Image Grid.Column="0"
-                                   VerticalAlignment="Stretch"
-                                   HorizontalAlignment="Stretch" 
-                                   Margin="0"
-                                   Source="/images/dollar_light.png">
+                       VerticalAlignment="Stretch"
+                       HorizontalAlignment="Stretch" 
+                       Margin="0"
+                       Source="/images/dollar_light.png">
                 </Image>
 
                 <TextBlock Grid.Column="1"
-                                           Grid.Row="0"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           FontSize="22"
-                                           FontWeight="DemiBold"
-                                           Foreground="#596EFB"
-                                           Text="USD"/>
+                           Grid.Row="0"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="22"
+                           FontWeight="DemiBold"
+                           Foreground="#596EFB"
+                           Text="USD"/>
 
-
-                <Image Grid.Column="2" Grid.Row="0" Margin="5">
+                <Image x:Name="arrowOpenOrClose" 
+                       Grid.Column="2"
+                       Grid.Row="0" 
+                       Margin="5" 
+                       MouseLeftButtonDown="OnOpenList">
+                    
                     <Image.Source>
-                        <BitmapImage UriSource="/images/up_arrow_light.png" Rotation="Rotate0"/>
+                        <BitmapImage UriSource="/images/up_arrow_light.png" Rotation="{Binding PointerAngle, Mode=TwoWay}" />
                     </Image.Source>
                 </Image>
 

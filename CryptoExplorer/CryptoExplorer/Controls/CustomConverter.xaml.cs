@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CryptoExplorer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,14 +17,53 @@ using System.Windows.Shapes;
 
 namespace CryptoExplorer.Controls
 {
-    /// <summary>
-    /// Interaction logic for CustomConverter.xaml
-    /// </summary>
     public partial class CustomConverter : UserControl
     {
         public CustomConverter()
         {
             InitializeComponent();
         }
+
+
+        public static readonly DependencyProperty PointerAngleProperty =
+            DependencyProperty.Register(
+                nameof(PointerAngle),
+                typeof(Rotation),
+                typeof(CustomConverter),
+                new PropertyMetadata(Rotation.Rotate0));
+
+        public Rotation PointerAngle
+        {
+            get { return (Rotation)GetValue(PointerAngleProperty); }
+            set { SetValue(PointerAngleProperty, value); }
+        }
+
+
+
+        #region   ---   Private helpers   ---
+        private void OnOpenList(object sender, MouseButtonEventArgs e)
+        {
+            arrowOpenOrClose.Source = GetBitmapImage("/images/up_arrow_light.png");
+        }
+
+
+        private BitmapImage GetBitmapImage(string path)
+        {
+            BitmapImage myBitmapImage = new BitmapImage();
+            myBitmapImage.BeginInit();
+
+            myBitmapImage.UriSource = new Uri(path, UriKind.Relative);
+
+            myBitmapImage.Rotation = PointerAngle = PointerAngle ==
+                Rotation.Rotate0 ?
+                Rotation.Rotate180 :
+                Rotation.Rotate0;
+
+            myBitmapImage.EndInit();
+
+            return myBitmapImage;
+        }
+
+        #endregion
     }
 }

@@ -29,7 +29,7 @@
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition Height="260"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <customConverter:CustomConverter  Grid.Row="0"/>
@@ -37,13 +37,13 @@
 
             <ListBox ScrollViewer.VerticalScrollBarVisibility="Auto"
                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                     Width="180"
+                     Width="220"
                      HorizontalAlignment="Left"
                      Height="auto"
                      Grid.Row="1"
                      Margin="0"
                      ItemsSource="{Binding СurrencyList}"
-                     BorderThickness="1"
+                     BorderThickness="2"
                      Background="Transparent"
                      SelectedItem="{Binding Currency}">
                 <ListBox.RenderTransform>
