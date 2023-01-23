@@ -7,10 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Controls\CustomConverter.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\CustomTextBlock.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Controls\CustomSearchBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ConverterPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\CurrencyDetailsPage.xaml.cs">
@@ -21,6 +27,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Controls\CustomConverter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Controls\CustomTextBlock.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -34,6 +43,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\LightTheme.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ConverterPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\CurrencyDetailsPage.xaml">

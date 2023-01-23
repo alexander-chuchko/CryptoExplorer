@@ -162,6 +162,10 @@ namespace CryptoExplorer
                     case Constants.DETAILS_ITEM:
                         _regionManager.RequestNavigate("ContentRegion", (nameof(CurrencyDetailsPage)));
                         break;
+
+                    case Constants.CONVERTER_ITEM:
+                        _regionManager.RequestNavigate("ContentRegion", (nameof(ConverterPage)));
+                        break;
                 }
             }
         }

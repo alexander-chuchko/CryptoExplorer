@@ -28,6 +28,7 @@ namespace CryptoExplorer
             //containerRegistry.RegisterForNavigation<CurrencyOverviewPage, CurrencyOverviewPageViewModel>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<CurrencyDetailsPage, CurrencyDetailsPageViewModel>();
+            containerRegistry.RegisterForNavigation<ConverterPage, ConverterPageViewModel>();
         }
 
         #endregion

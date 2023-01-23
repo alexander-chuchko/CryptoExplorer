@@ -20,7 +20,7 @@ namespace CryptoExplorer.ViewModels
 
         #endregion
 
-        public MainPageViewModel(ICryptocurrencyService? cryptocurrencyService, IRegionManager regionManager)
+        public MainPageViewModel(ICryptocurrencyService cryptocurrencyService, IRegionManager regionManager)
         {
             _cryptocurrencyService = cryptocurrencyService;
             _regionManager = regionManager;
@@ -110,6 +110,5 @@ namespace CryptoExplorer.ViewModels
         }
 
         #endregion
-
     }
 }
