@@ -7,29 +7,29 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Border BorderBrush="#40FFFFFF" BorderThickness="1" CornerRadius="2" Height="50">
-            <Border BorderBrush="#80000000" BorderThickness="1,1,0,0" CornerRadius="2">
-                <Border BorderBrush="#30000000" BorderThickness="0,0,1,1" CornerRadius="2">
-                    <Border BorderBrush="#F0FFFFFF" BorderThickness="1" CornerRadius="1">
 
-                        <Grid Background="Transparent">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="50"/>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="10"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="30"/>
-                            </Grid.ColumnDefinitions>
+        <Border BorderBrush="Gray" 
+                BorderThickness="1"
+                CornerRadius="1">
 
-                            <Image Grid.Column="0"
+            <Grid Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"
                                    VerticalAlignment="Stretch"
                                    HorizontalAlignment="Stretch" 
                                    Margin="0"
                                    Source="/images/dollar_light.png">
-                            </Image>
+                </Image>
 
-                            <TextBlock Grid.Column="1"
+                <TextBlock Grid.Column="1"
                                            Grid.Row="0"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
@@ -39,42 +39,39 @@
                                            Text="USD"/>
 
 
-                            <Image Grid.Column="2" Grid.Row="0" Margin="5">
-                                <Image.Source>
-                                    <BitmapImage UriSource="/images/up_arrow_light.png" Rotation="Rotate0"/>
-                                </Image.Source>
-                            </Image>
+                <Image Grid.Column="2" Grid.Row="0" Margin="5">
+                    <Image.Source>
+                        <BitmapImage UriSource="/images/up_arrow_light.png" Rotation="Rotate0"/>
+                    </Image.Source>
+                </Image>
 
-                            <TextBlock Text="|" 
-                                       HorizontalAlignment="Center"
-                                       Grid.Column="3"
-                                       Margin="0,0,0,7"
-                                       Foreground="Gray"
-                                       FontSize="30"
-                                       VerticalAlignment="Center"/>
+                <TextBlock Text="|" 
+                           HorizontalAlignment="Center"
+                           Grid.Column="3"
+                           Margin="0,0,0,7"
+                           Foreground="Gray"
+                           FontSize="30"
+                           VerticalAlignment="Center"/>
 
-                            <TextBox Background="#C0FFFFFF"
-                                     Grid.Column="4"
-                                     FontSize="22" 
-                                     MaxLength="30"
-                                     Foreground="#596EFB"
-                                     FontWeight="DemiBold"
-                                     BorderThickness="0"
-                                     VerticalAlignment="Center"
-                                     VerticalContentAlignment="Center">
-                            </TextBox>
+                <TextBox Background="#C0FFFFFF"
+                         Grid.Column="4"
+                         FontSize="22" 
+                         MaxLength="30"
+                         Foreground="#596EFB"
+                         FontWeight="DemiBold"
+                         BorderThickness="0"
+                         VerticalAlignment="Center"
+                         VerticalContentAlignment="Center">
+                </TextBox>
 
-                            <Image Grid.Column="5"
-                                       VerticalAlignment="Stretch"
-                                       HorizontalAlignment="Stretch" 
-                                       Margin="0"
-                                       Source="/images/ic_clear.png">
-                            </Image>
-                        </Grid>
-                    </Border>
-                </Border>
-            </Border>
+                <Image Grid.Column="5"
+                       VerticalAlignment="Stretch"
+                       HorizontalAlignment="Stretch" 
+                       Margin="0"
+                       Source="/images/ic_clear.png">
+                </Image>
+                
+            </Grid>
         </Border>
-
     </Grid>
 </UserControl>

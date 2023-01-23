@@ -8,28 +8,86 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#fcfcfc">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
         <TextBlock Grid.Row="0"
                    Grid.Column="0"
                    Text="Cryptocurrency converter and calculator"
                    FontSize="26"
                    Foreground="Black"
                    HorizontalAlignment="Left"/>
+        
         <Grid Grid.Row="1"
               Grid.Column="1"
               Width="500">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="260"/>
+            </Grid.RowDefinitions>
 
-            <customConverter:CustomConverter>
+            <customConverter:CustomConverter  Grid.Row="0"/>
+
+
+            <ListBox ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     Width="180"
+                     HorizontalAlignment="Left"
+                     Height="auto"
+                     Grid.Row="1"
+                     Margin="0"
+                     ItemsSource="{Binding СurrencyList}"
+                     BorderThickness="1"
+                     Background="Transparent"
+                     SelectedItem="{Binding Currency}">
+                <ListBox.RenderTransform>
+                    <TranslateTransform Y="-0"/>
+                </ListBox.RenderTransform>
                 
-            </customConverter:CustomConverter>
+                <ListBox.Style>
+                    <Style TargetType="ListBox">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementStatus}" Value="True">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.Style>
+                
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Grid.Column="0"
+                                       FontSize="16"
+                                       Foreground="Black"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Bottom"
+                                       Text="{Binding Symbol}"
+                                       Margin="5,0"/>
+                            
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Name}"
+                                       FontSize="14"
+                                       VerticalAlignment="Bottom"
+                                       Foreground="Gray"
+                                       Margin="5,0"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
 
-
+            </ListBox>
+            
             <!-- 
             <Border BorderBrush="#40FFFFFF" BorderThickness="1" CornerRadius="2" Height="50">
                 <Border BorderBrush="#80000000" BorderThickness="1,1,0,0" CornerRadius="2">
