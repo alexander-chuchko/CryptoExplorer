@@ -54,7 +54,7 @@ namespace CryptoExplorer.ViewModels
 
         private async void OnGetCurrencies()
         {
-            СurrencyList = await _cryptocurrencyService.GetTopCurrenciesAsync();
+            СurrencyList = await _cryptocurrencyService.GetCurrenciesAsync();
 
             if (СurrencyList is not null && СurrencyList.Count() > 0)
             {
@@ -66,12 +66,13 @@ namespace CryptoExplorer.ViewModels
 
         #region     --- Override ---
 
-        protected override void OnPropertyChanged(PropertyChangedEventArgs args)
+        protected override async void OnPropertyChanged(PropertyChangedEventArgs args)
         {
             base.OnPropertyChanged(args);
             
             if (args.PropertyName == nameof(Currency))
             {
+                var res = await _cryptocurrencyService.GetExchangeRatesAsync();
                 ElementStatus = true;
             }
         }

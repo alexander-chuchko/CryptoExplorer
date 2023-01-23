@@ -71,7 +71,7 @@ namespace CryptoExplorer.ViewModels
 
         private async void OnGetCurrencies()
         {
-            CurrencyAllList = await _cryptocurrencyService.GetTopCurrenciesAsync();
+            CurrencyAllList = await _cryptocurrencyService.GetCurrenciesAsync();
             
             if (CurrencyAllList is not null && CurrencyAllList.Count() > 0) 
             {

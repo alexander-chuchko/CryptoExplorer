@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\Library\Test Assignment\DCT_WPF\Projects\CryptoExplorer\CryptoExplorer\CryptoExplorer\App.xaml
 9334225920
 
-271952669667
+28-259529439
 201-111599273
 Controls\CustomConverter.xaml;Controls\CustomSearchBar.xaml;Controls\CustomTextBlock.xaml;MainWindow.xaml;Styles\DarkTheme.xaml;Styles\LightTheme.xaml;Views\ConverterPage.xaml;Views\CurrencyDetailsPage.xaml;Views\MainPage.xaml;
 
-True
+False
 

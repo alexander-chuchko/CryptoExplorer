@@ -24,6 +24,7 @@ namespace CryptoExplorer.Controls
             InitializeComponent();
         }
 
+        #region   ---   Public properties   ---
 
         public static readonly DependencyProperty PointerAngleProperty =
             DependencyProperty.Register(
@@ -38,7 +39,7 @@ namespace CryptoExplorer.Controls
             set { SetValue(PointerAngleProperty, value); }
         }
 
-
+        #endregion
 
         #region   ---   Private helpers   ---
         private void OnOpenList(object sender, MouseButtonEventArgs e)

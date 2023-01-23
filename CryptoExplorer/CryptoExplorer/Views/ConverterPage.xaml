@@ -28,11 +28,12 @@
               Width="500">
             
             <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <customConverter:CustomConverter  Grid.Row="0"/>
+            <customConverter:CustomConverter x:Name="converter"
+                                             Grid.Row="0"/>
 
 
             <ListBox ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -53,7 +54,7 @@
                 <ListBox.Style>
                     <Style TargetType="ListBox">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementStatus}" Value="True">
+                            <DataTrigger Binding="{Binding ElementName=converter, Path=PointerAngle}" Value="{x:Static Rotation.Rotate0}">
                                 <Setter Property="Visibility" Value="Hidden"/>
                             </DataTrigger>
                         </Style.Triggers>

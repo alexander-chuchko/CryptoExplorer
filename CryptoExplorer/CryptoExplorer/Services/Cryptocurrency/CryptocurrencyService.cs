@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace CryptoExplorer.Services.Cryptocurrency
 {
@@ -14,17 +15,23 @@ namespace CryptoExplorer.Services.Cryptocurrency
     {
         public const string WEB_API_CURRENCIES = $"?poloniex=Binance&limit="; //Currencies
         public const string WEB_API_MARKETS = $"/markets?limit="; //api.coincap.io/v2/assets/bitcoin10
+        //public const string WEB_API_EXCHANGES = $"/markets";
 
         private HttpClient _client;
+        private HttpClient _client1;
+
         public CryptocurrencyService()
         {
             _client = new HttpClient();
-            _client.BaseAddress = new Uri(Constants.BASE_URL);
+            _client.BaseAddress = new Uri(Constants.BASE_URL_ONE);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Add(Constants.API_NAME, Constants.API_KEY);
 
+            _client1 = new HttpClient();
+            //_client1.BaseAddress = new Uri(Constants.BASE_URL_TWO);
+
         }
-        public async Task<IEnumerable<Currency>> GetTopCurrenciesAsync()
+        public async Task<IEnumerable<Currency>> GetCurrenciesAsync()
         {
             IEnumerable<Currency>? сurrencies = null;
 
@@ -48,13 +55,14 @@ namespace CryptoExplorer.Services.Cryptocurrency
             return сurrencies;
         }
 
+
+
         public async Task<IEnumerable<Market>> GetMarketsAsync(string id)
         {
             IEnumerable<Market>? markets = null;
 
             try
             {
-                //api.coincap.io/v2/assets/bitcoin/markets?limit=10
                 HttpResponseMessage response = await _client.GetAsync($"assets/{id}{WEB_API_MARKETS}{Constants.LIMIT_MARKETS}");
 
                 if (response.EnsureSuccessStatusCode().IsSuccessStatusCode && response.StatusCode == HttpStatusCode.OK)
@@ -91,6 +99,30 @@ namespace CryptoExplorer.Services.Cryptocurrency
             }
 
             return selectedCurrencies;
+        }
+
+        public async Task<IEnumerable<Currency>> GetExchangeRatesAsync()
+        {
+            IEnumerable<Currency>? сurrencies = null;
+
+            try
+            {
+                HttpResponseMessage response = await _client1.GetAsync($"https://cryptingup.com/api/markets");
+
+                if (response.EnsureSuccessStatusCode().IsSuccessStatusCode && response.StatusCode == HttpStatusCode.OK)
+                {
+                    var responceCurrency = await response.Content.ReadAsStringAsync();
+                    var deserializedResponceCurrency = JsonConvert.DeserializeObject<ExchangeRate>(responceCurrency);
+
+                    //сurrencies = deserializedResponceCurrency?.Currencies?.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+
+            return сurrencies;
         }
     }
 }
