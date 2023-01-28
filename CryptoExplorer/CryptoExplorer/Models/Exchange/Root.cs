@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace CryptoExplorer.Models.Exchange
 {
     public class Root
     {
+        [JsonProperty("markets")]
         public List<Market>? Markets { get; set; }
-        public string? Next { get; set; }
 
+        [JsonProperty("next")]
+        public string? Next { get; set; }
     }
 }

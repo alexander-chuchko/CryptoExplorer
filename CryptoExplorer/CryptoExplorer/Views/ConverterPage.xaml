@@ -30,6 +30,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <customConverter:CustomConverter x:Name="converter"
@@ -88,7 +90,10 @@
                 </ListBox.ItemTemplate>
 
             </ListBox>
-            
+
+            <customConverter:CustomConverter x:Name="converter1"
+                                             Grid.Row="2"/>
+
             <!-- 
             <Border BorderBrush="#40FFFFFF" BorderThickness="1" CornerRadius="2" Height="50">
                 <Border BorderBrush="#80000000" BorderThickness="1,1,0,0" CornerRadius="2">

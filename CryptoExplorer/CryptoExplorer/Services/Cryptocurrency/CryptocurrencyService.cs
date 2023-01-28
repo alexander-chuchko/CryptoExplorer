@@ -1,4 +1,5 @@
 ﻿using CryptoExplorer.Models;
+using CryptoExplorer.Models.Exchange;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -57,9 +58,9 @@ namespace CryptoExplorer.Services.Cryptocurrency
 
 
 
-        public async Task<IEnumerable<Market>> GetMarketsAsync(string id)
+        public async Task<IEnumerable<Models.Market>> GetMarketsAsync(string id)
         {
-            IEnumerable<Market>? markets = null;
+            IEnumerable<Models.Market>? markets = null;
 
             try
             {
@@ -101,19 +102,22 @@ namespace CryptoExplorer.Services.Cryptocurrency
             return selectedCurrencies;
         }
 
-        public async Task<IEnumerable<Currency>> GetExchangeRatesAsync()
+        public async Task<IEnumerable<Models.Exchange.Market>> GetExchangeRatesAsync()
         {
-            IEnumerable<Currency>? сurrencies = null;
+            IEnumerable<Models.Exchange.Market>? сurrencies = null;
 
             try
-            {
-                HttpResponseMessage response = await _client1.GetAsync($"https://cryptingup.com/api/markets");
+            { 
+                //https://cryptingup.com/api/exchanges/COINBASE/markets
+                HttpResponseMessage response = await _client1.GetAsync($"https://cryptingup.com/api/exchanges/COINBASE/markets");
 
                 if (response.EnsureSuccessStatusCode().IsSuccessStatusCode && response.StatusCode == HttpStatusCode.OK)
                 {
                     var responceCurrency = await response.Content.ReadAsStringAsync();
-                    var deserializedResponceCurrency = JsonConvert.DeserializeObject<ExchangeRate>(responceCurrency);
-
+                    var deserializedResponceCurrency = JsonConvert.DeserializeObject<Root>(responceCurrency);
+                    сurrencies = deserializedResponceCurrency?.Markets;
+                    ///var res = deserializedResponceCurrency.Markets[0].
+                    //BaseAsset
                     //сurrencies = deserializedResponceCurrency?.Currencies?.ToList();
                 }
             }

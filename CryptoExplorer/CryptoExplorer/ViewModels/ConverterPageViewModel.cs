@@ -1,10 +1,12 @@
 ﻿using CryptoExplorer.Models;
+using CryptoExplorer.Models.Exchange;
 using CryptoExplorer.Services.Cryptocurrency;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CryptoExplorer.ViewModels
 {
@@ -21,7 +23,7 @@ namespace CryptoExplorer.ViewModels
         {
             _cryptocurrencyService = cryptocurrencyService;
             _regionManager = regionManager;
-            OnGetCurrencies();
+            Task.Run(()=> OnGetCurrencies());
         }
 
         #region   ---   PublicProperties   ---
@@ -40,6 +42,22 @@ namespace CryptoExplorer.ViewModels
             set { SetProperty(ref _currency, value); }
         }
 
+        private IEnumerable<string> _baseAssets;
+        public IEnumerable<string> BaseAssets
+        {
+            get { return _baseAssets; }
+            set { SetProperty(ref _baseAssets, value); }
+        }
+
+        private IEnumerable<Models.Exchange.Market> _markets;
+        public IEnumerable<Models.Exchange.Market> Markets
+        {
+            get { return _markets; }
+            set { SetProperty(ref _markets, value); }
+        }
+
+        //Names of monetary units
+
         //ElementStatus
         private bool? _elementStatus = false;
         public bool? ElementStatus
@@ -54,8 +72,20 @@ namespace CryptoExplorer.ViewModels
 
         private async void OnGetCurrencies()
         {
-            СurrencyList = await _cryptocurrencyService.GetCurrenciesAsync();
+            //СurrencyList = await _cryptocurrencyService.GetCurrenciesAsync();
+            IEnumerable<Models.Exchange.Market> markets = await _cryptocurrencyService.GetExchangeRatesAsync();
+            var res = markets.ToList()[0];
 
+            BaseAssets = markets.Select(x => x.BaseAsset).ToList();
+
+            BaseAssets = markets.Select(x => x.BaseAsset).ToList();
+            //var res1 = markets.Where(x=>x.)
+
+            foreach (var item in markets)
+            {
+
+            }
+            //var res = root.ToList()[0].Markets[0].Quote.JPY.
             if (СurrencyList is not null && СurrencyList.Count() > 0)
             {
 
