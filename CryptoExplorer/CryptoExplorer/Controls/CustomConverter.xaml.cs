@@ -39,6 +39,20 @@ namespace CryptoExplorer.Controls
             set { SetValue(PointerAngleProperty, value); }
         }
 
+        public static readonly DependencyProperty CurrencyNameProperty =
+            DependencyProperty.Register(
+                nameof(CurrencyName),
+                typeof(string),
+                typeof(CustomConverter),
+                new PropertyMetadata(string.Empty));
+        //new PropertyChangedCallback(OnSetTextChanged))
+
+        public string CurrencyName
+        {
+            get { return (string)GetValue(CurrencyNameProperty); }
+            set { SetValue(CurrencyNameProperty, value); }
+        }
+
         #endregion
 
         #region   ---   Private helpers   ---

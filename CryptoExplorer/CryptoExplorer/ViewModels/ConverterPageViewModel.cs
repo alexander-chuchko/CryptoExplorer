@@ -3,9 +3,11 @@ using CryptoExplorer.Models.Exchange;
 using CryptoExplorer.Services.Cryptocurrency;
 using Prism.Mvvm;
 using Prism.Regions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace CryptoExplorer.ViewModels
@@ -78,24 +80,16 @@ namespace CryptoExplorer.ViewModels
 
         private async void OnGetCurrencies()
         {
-            //СurrencyList = await _cryptocurrencyService.GetCurrenciesAsync();
+            СurrencyList = await _cryptocurrencyService.GetCurrenciesAsync();
             IEnumerable<Models.Exchange.Market> markets = await _cryptocurrencyService.GetExchangeRatesAsync();
             var res = markets.ToList()[0];
 
             BaseAssets = markets.Select(x => x.BaseAsset).ToList();
 
-            BaseAssets = markets.Select(x => x.BaseAsset).ToList();
             //var res1 = markets.Where(x=>x.)
 
-            foreach (var item in markets)
-            {
+            CurrencyNames = typeof(Quote).GetProperties().Select(x=>x.Name);
 
-            }
-            //var res = root.ToList()[0].Markets[0].Quote.JPY.
-            if (СurrencyList is not null && СurrencyList.Count() > 0)
-            {
-
-            }
         }
 
         #endregion

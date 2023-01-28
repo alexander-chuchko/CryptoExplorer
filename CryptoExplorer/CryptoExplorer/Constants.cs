@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace CryptoExplorer
 {
     public class Constants
@@ -29,5 +31,6 @@ namespace CryptoExplorer
         public const string DETAILS_ITEM = "Details";
         public const string CONVERTER_ITEM = "Converter";
         public const string SETTINGS_ITEM = "Settings";
+
     }
 }
