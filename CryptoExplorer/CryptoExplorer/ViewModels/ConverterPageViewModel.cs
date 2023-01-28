@@ -56,7 +56,13 @@ namespace CryptoExplorer.ViewModels
             set { SetProperty(ref _markets, value); }
         }
 
-        //Names of monetary units
+
+        private IEnumerable<string> _currencyNames;
+        public IEnumerable<string> CurrencyNames
+        {
+            get { return _currencyNames; }
+            set { SetProperty(ref _currencyNames, value); }
+        }
 
         //ElementStatus
         private bool? _elementStatus = false;
