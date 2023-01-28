@@ -66,8 +66,15 @@ namespace CryptoExplorer.ViewModels
             set { SetProperty(ref _currencyNames, value); }
         }
 
+        private string? _cryptocurrencyName;
+        public string? CryptocurrencyName
+        {
+            get { return _cryptocurrencyName; }
+            set { SetProperty(ref _cryptocurrencyName, value); }
+        }
 
 
+        //CryptocurrencyName
 
         private bool? _elementStatus = false;
         public bool? ElementStatus
