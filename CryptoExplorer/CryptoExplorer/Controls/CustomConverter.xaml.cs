@@ -1,19 +1,8 @@
-﻿using CryptoExplorer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CryptoExplorer.Controls
 {
@@ -44,8 +33,7 @@ namespace CryptoExplorer.Controls
                 nameof(CurrencyName),
                 typeof(string),
                 typeof(CustomConverter),
-                new PropertyMetadata(string.Empty));
-        //new PropertyChangedCallback(OnSetTextChanged))
+                new PropertyMetadata(string.Empty, new PropertyChangedCallback(OnCurrencyNameChanged)));
 
         public string CurrencyName
         {
@@ -56,6 +44,20 @@ namespace CryptoExplorer.Controls
         #endregion
 
         #region   ---   Private helpers   ---
+
+        private static void OnCurrencyNameChanged(DependencyObject control, DependencyPropertyChangedEventArgs e)
+        {
+            if (control is CustomConverter customConverter)
+            {
+                customConverter.OnCurrencyName(e);
+            }
+        }
+
+        private void OnCurrencyName(DependencyPropertyChangedEventArgs e)
+        {
+            nameCurrency.Text = (string)e.NewValue;
+        }
+
         private void OnOpenList(object sender, MouseButtonEventArgs e)
         {
             arrowOpenOrClose.Source = GetBitmapImage("/images/up_arrow_light.png");

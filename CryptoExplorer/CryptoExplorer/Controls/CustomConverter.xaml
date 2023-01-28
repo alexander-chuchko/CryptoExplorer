@@ -31,12 +31,13 @@
 
                 <TextBlock Grid.Column="1"
                            Grid.Row="0"
+                           x:Name="nameCurrency"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="22"
                            FontWeight="DemiBold"
                            Foreground="#596EFB"
-                           Text="USD"/>
+                           Text="{Binding CurrencyName, Mode=TwoWay}"/>
 
                 <Image x:Name="arrowOpenOrClose" 
                        Grid.Column="2"

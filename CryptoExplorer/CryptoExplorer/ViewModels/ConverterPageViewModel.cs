@@ -66,7 +66,9 @@ namespace CryptoExplorer.ViewModels
             set { SetProperty(ref _currencyNames, value); }
         }
 
-        //ElementStatus
+
+
+
         private bool? _elementStatus = false;
         public bool? ElementStatus
         {

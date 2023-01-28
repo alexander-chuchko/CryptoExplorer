@@ -34,7 +34,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <customConverter:CustomConverter x:Name="converter"
+            <customConverter:CustomConverter x:Name="converter" CurrencyName="{Binding CryptocurrencyName}"
                                              Grid.Row="0"/>
 
 
